@@ -2,17 +2,45 @@ import React from "react";
 import styles from "./LoginPage.module.css";
 import { Button } from "@mui/material";
 import { useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginLoading,
+  loginSuccess,
+  loginError,
+} from "../../Redux/Auth/action.js";
 
 export const LoginPage = () => {
   const [data, setData] = useState({});
+  const dispatch = useDispatch();
+  // const { auth, user } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const handleClick = () => {
-    // console.log(data);
+  // Function for login
+  const handleClick = async () => {
+    let { email, password } = data;
+    try {
+      dispatch(loginLoading());
+      console.log(email, password);
+      await axios
+        .post("http://localhost:5000/user-login", {
+          email: email,
+          password: password,
+        })
+
+        .then((res) => {
+          const action = loginSuccess(res.data);
+          dispatch(action);
+          localStorage.setItem("user", JSON.stringify(res.data));
+        });
+    } catch (err) {
+      const action = loginError("wrong credentials");
+      dispatch(action);
+    }
   };
 
   return (

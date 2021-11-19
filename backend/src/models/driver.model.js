@@ -10,6 +10,7 @@ const driverSchema = new mongoose.Schema(
     phone: { type: String, required: true },
     vehicleNo: { type: String, required: true },
     password: { type: String, required: true },
+    roles: { type: String, required: true },
   },
   {
     timestamps: true,
