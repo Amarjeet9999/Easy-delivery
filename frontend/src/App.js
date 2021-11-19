@@ -1,13 +1,6 @@
 import "./App.css";
-import { VendorSignUp } from "./Components/Registration/VendorSignUp";
-
-// import Home from "./Components/Home/Home"; {<Home/>}
 function App() {
-  return (
-    <div className="App">
-      <VendorSignUp />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
