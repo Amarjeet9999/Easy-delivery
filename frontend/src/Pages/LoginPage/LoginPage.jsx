@@ -1,18 +1,28 @@
 import React from "react";
 import styles from "./LoginPage.module.css";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+} from "@mui/material";
 import { useState } from "react";
 
 export const LoginPage = () => {
-  const [data, setData] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [client, setClient] = useState("user");
 
   const handleClick = () => {
-    // console.log(data);
+    const payload = {
+      email: email,
+      password: password,
+      client: client,
+    };
+
+    console.log(payload);
   };
 
   return (
@@ -23,7 +33,9 @@ export const LoginPage = () => {
             type="email"
             name="email"
             placeholder="Enter Email"
-            onChange={handleChange}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </div>
         <div className={styles.input_box}>
@@ -31,8 +43,36 @@ export const LoginPage = () => {
             type="password"
             name="password"
             placeholder="Enter Password"
-            onChange={handleChange}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
+        </div>
+        <div className={`${styles.input_box}${styles.radio}`}>
+          <FormControl component="fieldset">
+            <RadioGroup
+              row
+              aria-label="type"
+              name="client_type"
+              value={client}
+              onChange={(e) => {
+                setClient(e.target.value);
+              }}
+            >
+              <FormControlLabel
+                value="user"
+                control={<Radio />}
+                label="User"
+                labelPlacement="start"
+              />
+              <FormControlLabel
+                value="driver"
+                control={<Radio />}
+                label="Driver"
+                labelPlacement="start"
+              />
+            </RadioGroup>
+          </FormControl>
         </div>
         <div className={styles.button_box}>
           <Button
