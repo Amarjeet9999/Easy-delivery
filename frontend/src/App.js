@@ -1,11 +1,14 @@
 import "./App.css";
-import { VendorSignUp } from "./Components/Registration/VendorSignUp";
 
-// import Home from "./Components/Home/Home"; {<Home/>}
+import Home from "./Components/Home/Home";
+import { DriverSignUp } from "./Components/Registration/DriverSignUp";
+
+import { VendorDashBoard } from "./Components/VendorDashBoard/VendorDashBoard";
 function App() {
   return (
     <div className="App">
-      <VendorSignUp />
+      {/* <Home /> */}
+      <VendorDashBoard />
     </div>
   );
 }
