@@ -7,7 +7,6 @@ function Home() {
   return (
     <>
       <NavContainer page={"home"} />
-
       <Main />
       <Banner />
       <Footer />

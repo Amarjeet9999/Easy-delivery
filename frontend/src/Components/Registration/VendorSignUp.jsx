@@ -1,35 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import {
   registerLoading,
   registerSuccess,
   registerError,
 } from "../../Redux/Auth/action";
 
-export const DriverSignUp = () => {
+export const VendorSignUp = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({});
   const [url, setUrl] = useState("");
+  const [formData, setFormData] = useState({});
   const [image, setImage] = useState(null);
-
-  // const { user, token, auth } = useSelector((state) => state.auth);
+  // const { user, token, auth, role } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (image) {
-      handleUpload();
+      handlePost();
     }
   }, [image]);
 
-  const fileUpload = (e) => {
+  const handleUpload = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
   };
 
-  const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  const handlePost = () => {
+    const uploadTask = storage.ref(`vendors/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
       (snapshot) => {},
@@ -38,7 +37,7 @@ export const DriverSignUp = () => {
       },
       () => {
         storage
-          .ref("images")
+          .ref("vendors")
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
@@ -52,29 +51,27 @@ export const DriverSignUp = () => {
   const handleChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let finalPayload = { ...formData, url: url };
-    // console.log(finalPayload);
-    handleRegister(finalPayload);
+    let load = { ...formData, url: url };
+    handleRegister(load);
   };
 
   const handleRegister = async (el) => {
     try {
       dispatch(registerLoading());
       await axios
-        .post("http://localhost:5000/driver-register", {
+        .post("http://localhost:5000/user-register", {
           email: el.email,
           name: el.name,
           aadhar: el.aadhar,
-          dlicense: el.url,
           phone: el.phone,
-          vehicleNo: el.vehicle,
           password: el.password,
-          roles: "driver",
+          roles: "user",
         })
         .then((res) => {
           const action = registerSuccess(res.data);
@@ -93,58 +90,49 @@ export const DriverSignUp = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <input
-            name="email"
-            onChange={handleChange}
-            type="email"
             placeholder="Email"
+            name="email"
+            type="email"
+            onChange={handleChange}
           />
         </div>
         <div>
           <input
-            name="name"
-            onChange={handleChange}
-            type="text"
             placeholder="Name"
-          />
-        </div>
-        <div>
-          <label>Driving Licence</label>
-          <input onChange={fileUpload} type="file" />
-        </div>
-        <div>
-          <input
-            name="aadhar"
-            onChange={handleChange}
+            name="name"
             type="text"
-            placeholder="Aadhar no.."
+            onChange={handleChange}
           />
         </div>
         <div>
           <input
-            name="phone"
-            onChange={handleChange}
-            type="text"
-            placeholder="Phone no.."
-          />
-        </div>
-        <div>
-          <input
-            name="vehicle"
-            onChange={handleChange}
-            type="text"
-            placeholder="Vehicle no"
-          />
-        </div>
-        <div>
-          <input
-            name="password"
-            onChange={handleChange}
-            type="password"
             placeholder="Password"
+            name="password"
+            type="password"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <input onChange={handleChange} type="submit" />
+          <input
+            placeholder="Phone No"
+            name="phone"
+            type="text"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            placeholder="Aadhar"
+            name="aadhar"
+            type="text"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input type="file" onChange={handleUpload} />
+        </div>
+        <div>
+          <input type="submit" />
         </div>
       </form>
     </>

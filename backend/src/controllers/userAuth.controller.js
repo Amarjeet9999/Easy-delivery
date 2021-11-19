@@ -17,8 +17,8 @@ const checkPass = (given, real) => {
 // Registeration
 const userRegister = async (req, res) => {
   try {
-
-    if (!validator.isValidNumber(req.body.aadhar))
+    // !validator.isValidNumber(req.body.aadhar)
+    if (req.body.aadhar < 12)
       return res.status(400).json({
         status: "error",
         message: "Aadhar is not valid",

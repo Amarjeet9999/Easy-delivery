@@ -14,6 +14,7 @@ const initState = {
   token: "",
   user: {},
   auth: false,
+  role: "",
 };
 
 export const authReducer = (state = initState, { type, payload }) => {
@@ -33,6 +34,7 @@ export const authReducer = (state = initState, { type, payload }) => {
         token: payload.token,
         user: payload.user,
         auth: true,
+        role: payload.user.roles,
       };
 
     case LOGIN_ERROR:
@@ -55,6 +57,7 @@ export const authReducer = (state = initState, { type, payload }) => {
         token: payload.token,
         user: payload.user,
         auth: true,
+        role: payload.user.roles,
       };
 
     case REGISTER_ERROR:
