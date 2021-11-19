@@ -1,0 +1,13 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f7;
+}
+.banner > :nth-child(1) {
+  width: 10%;
+  height: 10%;
+}
+.banner > :nth-child(3) {
+  width: 15%;
+}
