@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase";
+import axios from "axios";
 
 export const DriverSignUp = () => {
   const [formData, setFormData] = useState({});
   const [url, setUrl] = useState("");
   const [image, setImage] = useState(null);
-  console.log(image);
 
   useEffect(() => {
     if (image) {
@@ -49,7 +49,31 @@ export const DriverSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let finalPayload = { ...formData, url: url };
-    console.log(finalPayload);
+    // console.log(finalPayload);
+    handleRegister(finalPayload);
+  };
+
+  const handleRegister = async (el) => {
+    try {
+      console.log("EL", el);
+      await axios
+        .post("http://localhost:5000/driver-register", {
+          email: el.email,
+          name: el.name,
+          aadhar: el.aadhar,
+          dlicense: el.url,
+          phone: el.phone,
+          vehicleNo: el.vehicle,
+          password: el.password,
+          roles: "driver",
+        })
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem("user", JSON.stringify(res.data));
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -77,10 +101,10 @@ export const DriverSignUp = () => {
         </div>
         <div>
           <input
-            name="adhar"
+            name="aadhar"
             onChange={handleChange}
             type="text"
-            placeholder="Adhar no.."
+            placeholder="Aadhar no.."
           />
         </div>
         <div>
