@@ -1,6 +1,12 @@
 import React from "react";
 import styles from "./LoginPage.module.css";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+} from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,23 +17,21 @@ import {
 } from "../../Redux/Auth/action.js";
 
 export const LoginPage = () => {
-  const [data, setData] = useState({});
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [client, setClient] = useState("user");
   const dispatch = useDispatch();
-  // const { auth, user } = useSelector((state) => state.auth);
+  // const { user, token, auth } = useSelector((state) => state.auth);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
-
-  // Function for login
-  const handleClick = async () => {
-    let { email, password } = data;
+  const handleLogin = async () => {
     try {
       dispatch(loginLoading());
-      console.log(email, password);
+      let url =
+        client === "user"
+          ? "http://localhost:5000/user-login"
+          : "http://localhost:5000/driver-login";
       await axios
-        .post("http://localhost:5000/user-login", {
+        .post(url, {
           email: email,
           password: password,
         })
@@ -35,6 +39,7 @@ export const LoginPage = () => {
         .then((res) => {
           const action = loginSuccess(res.data);
           dispatch(action);
+          console.log(url);
           localStorage.setItem("user", JSON.stringify(res.data));
         });
     } catch (err) {
@@ -51,7 +56,9 @@ export const LoginPage = () => {
             type="email"
             name="email"
             placeholder="Enter Email"
-            onChange={handleChange}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </div>
         <div className={styles.input_box}>
@@ -59,15 +66,43 @@ export const LoginPage = () => {
             type="password"
             name="password"
             placeholder="Enter Password"
-            onChange={handleChange}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
+        </div>
+        <div className={`${styles.input_box}${styles.radio}`}>
+          <FormControl component="fieldset">
+            <RadioGroup
+              row
+              aria-label="type"
+              name="client_type"
+              value={client}
+              onChange={(e) => {
+                setClient(e.target.value);
+              }}
+            >
+              <FormControlLabel
+                value="user"
+                control={<Radio />}
+                label="User"
+                labelPlacement="start"
+              />
+              <FormControlLabel
+                value="driver"
+                control={<Radio />}
+                label="Driver"
+                labelPlacement="start"
+              />
+            </RadioGroup>
+          </FormControl>
         </div>
         <div className={styles.button_box}>
           <Button
             variant="contained"
             size="medium"
             style={{ width: "100%" }}
-            onClick={handleClick}
+            onClick={handleLogin}
           >
             Log in
           </Button>
