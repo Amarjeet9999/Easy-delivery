@@ -42,6 +42,28 @@ export const authReducer = (state = initState, { type, payload }) => {
         error: true,
       };
 
+    case REGISTER_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        token: payload.token,
+        user: payload.user,
+        auth: true,
+      };
+
+    case REGISTER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
+
     case LOG_OUT:
       return {
         ...state,
