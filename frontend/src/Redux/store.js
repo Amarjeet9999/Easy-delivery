@@ -1,8 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { authReducer } from "./Auth/authReducer";
 import Thunk from "redux-thunk";
+import { locationReducer } from "./Location/locationReducer";
 
-const rootReducer = combineReducers({ auth: authReducer });
+const rootReducer = combineReducers({
+  auth: authReducer,
+  location: locationReducer,
+});
 
 export const store = createStore(
   rootReducer,
