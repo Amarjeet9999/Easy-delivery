@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Nav.module.css";
-import { Stack, Button } from "@mui/material";
+import { Button } from "@mui/material";
 
 export const NavLanding = () => {
   return (

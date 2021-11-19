@@ -1,0 +1,48 @@
+.homeContainer {
+  text-align: center;
+  background-color: #f0f2f7;
+}
+.lowerContainer {
+  width: 50%;
+  margin: auto;
+}
+.upperContainer > * {
+  font-weight: bold;
+}
+.upperContainer {
+  padding-top: 60px;
+}
+.cards {
+  display: flex;
+  justify-content: space-around;
+}
+.cards > div {
+  background-color: #f0f2f7;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+.cards > div:hover {
+  transform: scale(1.08);
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+.cards > div:focus {
+  border: 1px solid #000;
+}
+.personIcon,
+.directionsIcon {
+  height: 250px;
+  width: 250px;
+  padding: 25px;
+}
+.middleContainer {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.lowerContainer {
+  margin-top: 25px;
+}

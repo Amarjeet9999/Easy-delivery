@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #f0f2f7;
+  padding-bottom: 50px;
+}
+.heading {
+  margin-left: 65px;
+  margin-top: -10px;
+  font-size: 25px;
+  background-color: #f0f2f7;
+}
+.footer p:hover {
+  color: #6c63ff;
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
