@@ -18,16 +18,16 @@ function Main() {
         </div>
         <div className={styles.lowerContainer}>
           <div className={styles.cards}>
-            <Link to="/vendorSignUp">
-              <div>
+            <div>
+              <Link to="/vendorSignUp">
                 <Vendor className={styles.personIcon} />
-              </div>
-            </Link>
-            <Link to="/driverSignUp">
-              <div>
+              </Link>
+            </div>
+            <div>
+              <Link to="/driverSignUp">
                 <Driver className={styles.directionsIcon} />
-              </div>
-            </Link>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
