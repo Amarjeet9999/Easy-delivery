@@ -11,7 +11,7 @@
 }
 .container,
 .landing_container,
-.home_container {
+.home_container,.driver_nav_container {
   display: flex;
 }
 
@@ -24,3 +24,35 @@
   align-items: center;
   justify-content: flex-end;
 }
+
+
+
+/*  client */
+
+.driver_nav_container {
+  border: 1px solid red;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.input_box {
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 60%;
+  height: 30px;
+  overflow: hidden;
+}
+.input_box > input {
+  width: 97%;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+}
+
+.input_box > input:focus {
+  outline: none;
+}
+
+
