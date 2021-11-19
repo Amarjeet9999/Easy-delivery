@@ -84,6 +84,9 @@ export const DriverSignUp = () => {
       <Typography variant="caption" className={styles.drivingLicense}>
         Driving License Identification<span style={{ color: "red" }}>*</span>
       </Typography>
+      <Typography variant="h6" className={styles.info}>
+        Enter Driver's Information <span style={{ color: "red" }}>*</span>
+      </Typography>
       <div className={styles.signUpSvg}>
         <DriverSignUpSvg />
       </div>

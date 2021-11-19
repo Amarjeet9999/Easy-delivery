@@ -1,6 +1,6 @@
-.signUpFormContainer {
+.vendorSignUp {
   text-align: center;
-  padding-top: 35px;
+  padding-top: 75px;
   background-color: #f0f2f7;
   height: 88vh;
 }
@@ -9,8 +9,8 @@
   grid-template-areas:
     "a . b"
     "c . d"
-    "e . f"
-    "g . h";
+    "e . f";
+
   width: 50%;
   margin: auto;
 }
@@ -32,13 +32,7 @@
 .form > div:nth-of-type(6) {
   grid-area: f;
 }
-.form > div:nth-of-type(7) {
-  grid-area: g;
-}
-.form > div:nth-of-type(8) {
-  grid-area: h;
-}
-.form > div:nth-of-type(8) > * {
+.form > div:nth-of-type(6) > * {
   background-color: #1976d2;
   color: #fff;
   font-size: 15px;
@@ -51,18 +45,19 @@
   width: 350px;
   margin: 25px;
 }
+.drivingLicense {
+  position: absolute;
+  top: 500px;
+  left: 428px;
+}
+
 .signUpSvg > * {
-  width: 12%;
+  width: 13%;
   height: 18%;
   margin-bottom: 35px;
 }
-.drivingLicense {
-  position: absolute;
-  top: 365px;
-  left: 426px;
-}
 .info {
   position: absolute;
-  top: 230px;
-  left: 420px;
+  top: 260px;
+  left: 413px;
 }

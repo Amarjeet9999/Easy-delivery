@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Slide from "react-reveal/Slide";
 
 import styles from "./Main.module.css";
 
