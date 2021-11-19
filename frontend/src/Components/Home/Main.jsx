@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import styles from "./Main.module.css";
 
@@ -17,12 +18,16 @@ function Main() {
         </div>
         <div className={styles.lowerContainer}>
           <div className={styles.cards}>
-            <div>
-              <Vendor className={styles.personIcon} />
-            </div>
-            <div>
-              <Driver className={styles.directionsIcon} />
-            </div>
+            <Link to="/vendorSignUp">
+              <div>
+                <Vendor className={styles.personIcon} />
+              </div>
+            </Link>
+            <Link to="/driverSignUp">
+              <div>
+                <Driver className={styles.directionsIcon} />
+              </div>
+            </Link>
           </div>
         </div>
       </div>
