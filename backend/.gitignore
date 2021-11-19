@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
+package-lock.json
 
 # testing
 /coverage
@@ -21,11 +23,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
-
-
-package-lock.json
-=======
-package-lock.json
-/src/app.js
->>>>>>> b5c4c565a56811a038ebb12ca3873caf31587ec9
