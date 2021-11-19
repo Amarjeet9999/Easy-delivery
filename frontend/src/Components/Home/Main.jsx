@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Slide from "react-reveal/Slide";
 
 import styles from "./Main.module.css";
 
@@ -19,14 +20,18 @@ function Main() {
         <div className={styles.lowerContainer}>
           <div className={styles.cards}>
             <Link to="/vendorSignUp">
-              <div>
-                <Vendor className={styles.personIcon} />
-              </div>
+              <Slide left>
+                <div>
+                  <Vendor className={styles.personIcon} />
+                </div>
+              </Slide>
             </Link>
             <Link to="/driverSignUp">
-              <div>
-                <Driver className={styles.directionsIcon} />
-              </div>
+              <Slide right>
+                <div>
+                  <Driver className={styles.directionsIcon} />
+                </div>
+              </Slide>
             </Link>
           </div>
         </div>
