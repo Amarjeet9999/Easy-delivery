@@ -4,7 +4,7 @@ const Package = require("../models/package.model");
 
 router.post("/", async (req, res) => {
   try {
-    let package = await Package.create(req.body);
+    const package = await Package.create(req.body);
     return res.status(201).json({ data: package });
   } catch (err) {
     return res.status(500).json({ error: err.message });

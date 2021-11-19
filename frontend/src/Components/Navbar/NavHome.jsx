@@ -10,7 +10,7 @@ export const NavHome = () => {
   const handleLogout = () => {
     try {
       dispatch(logout());
-      localStorage.clear("user");
+      localStorage.removeItem("user");
     } catch (err) {
       console.log(err);
     }
