@@ -1,0 +1,27 @@
+.container {
+  width: 100vw;
+  height: 49px;
+}
+.container {
+  border: 1px solid black;
+}
+
+.left_nav,
+.right_nav {
+  width: 50%;
+}
+.container,
+.landing_container,
+.home_container {
+  display: flex;
+}
+
+.landing_container,
+.home_container {
+  width: 98%;
+  border: 1px solid red;
+  height: 100%;
+  padding: 0% 2% 0% 0%;
+  align-items: center;
+  justify-content: flex-end;
+}
