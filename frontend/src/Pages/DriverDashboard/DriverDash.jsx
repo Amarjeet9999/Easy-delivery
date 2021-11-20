@@ -112,6 +112,7 @@ export const DriverDash = () => {
                   onClick={() => {
                     handleClick(el?._id);
                   }}
+                  style={{ backgroundColor: "#6C63FF" }}
                 >
                   Accept
                 </Button>

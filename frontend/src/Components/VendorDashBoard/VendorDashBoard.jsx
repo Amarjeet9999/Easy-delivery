@@ -278,7 +278,8 @@ export const VendorDashBoard = () => {
             >
               <div className={styles.listData}>
                 <div className={styles.route}>
-                  <div className={styles.text}>
+                  <b style={{ margin: "10px 18px" }}>Your package</b>
+                  <div className={styles.text} style={{ marginTop: "5px" }}>
                     <span>From : </span>
                     <span>{mainData[0]?.from}</span>
                   </div>
@@ -308,6 +309,7 @@ export const VendorDashBoard = () => {
                   margin: "0 10px",
                 }}
               >
+                <b className="boldHead">Courier Partnet Details</b>
                 <div>
                   <span>Name : </span>
                   {mainData[0]?.driverId[0]?.name}

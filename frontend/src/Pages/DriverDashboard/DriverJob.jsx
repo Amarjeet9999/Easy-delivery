@@ -55,12 +55,6 @@ export const DriverJobs = () => {
       <div className={styles.jobs_sub_container}>
         {driver !== "" &&
           driver?.jobs.map((e) => {
-            // return (
-            //   <div key={e._id}>
-            //     <h1>{e.packageName}</h1>;
-            //     <button onClick={() => declineJob(e._id)}>Decline</button>
-            //   </div>
-            // );
             return (
               <div key={e._id} className={styles.list}>
                 <div>
@@ -91,6 +85,7 @@ export const DriverJobs = () => {
                   onClick={() => {
                     declineJob(e?._id);
                   }}
+                  style={{ backgroundColor: "#6C63FF" }}
                 >
                   Decline
                 </Button>
