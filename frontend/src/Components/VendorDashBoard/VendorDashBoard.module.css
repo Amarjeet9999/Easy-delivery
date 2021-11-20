@@ -81,7 +81,6 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  border: 1px solid red;
 }
 .image > img {
   width: 200px;
@@ -105,4 +104,12 @@
   transform: scale(1.1);
   transition: all 0.3s;
   transform: translateX(6px);
+}
+.sub_container {
+  width: 93%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  justify-content: space-evenly;
+  margin-top: 30px;
 }
