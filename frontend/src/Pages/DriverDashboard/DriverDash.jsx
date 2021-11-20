@@ -2,7 +2,9 @@ import React from "react";
 import { NavContainer } from "../../Components/Navbar/NavContainer";
 import Pusher from "pusher-js";
 import axios from "axios";
+import styles from "./DriverDash.module.css";
 // import { useSelector } from "react-redux";
+import { Button } from "@mui/material";
 
 export const DriverDash = () => {
   const [data, setData] = React.useState([]);
@@ -44,8 +46,40 @@ export const DriverDash = () => {
 
 
   return (
-    <div>
+    <div className={styles.container}>
       <NavContainer user={"driver"} page={"home"} />
+      <div className={styles.sub_container}>
+        {data?.map((el) =>
+          el.status ? null : (
+            <div className={styles.list}>
+              <div>
+                <div className={styles.route}>
+                  <div className={styles.text}>
+                    <span>From:</span>
+                    <span>{el?.from}</span>
+                  </div>
+                  <div className={styles.text}>
+                    <span>Destination:</span>
+                    <span>{el?.to}</span>
+                  </div>
+                </div>
+                <div className={styles.text}>
+                  <span>Item: </span>
+                  <span>{el?.packageName}</span>
+                </div>
+                <div className={styles.text}>
+                  <span>Weight:</span>
+                  <span>{el?.weight}</span>
+                </div>
+              </div>
+              <div className={styles.image}>
+                <img src={el?.image} alt="" />
+              </div>
+              <Button variant="contained">Accept</Button>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 };
