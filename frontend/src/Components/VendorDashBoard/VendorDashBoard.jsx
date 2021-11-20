@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { storage } from "../Registration/firebase";
 export const VendorDashBoard = () => {
   const [url, setUrl] = useState("");

@@ -1,5 +1,9 @@
+import { TextField, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase";
+import styles from "./VendorSignUp.module.css";
+import { ReactComponent as DriverSignUpSvg } from "../Home/svg/vendorSignUp.svg";
+
 export const VendorSignUp = () => {
   const [url, setUrl] = useState("");
   const [formData, setFormData] = useState({});
@@ -53,47 +57,64 @@ export const VendorSignUp = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.vendorSignUp}>
+      <Typography variant="caption" className={styles.drivingLicense}>
+        Identification <span style={{ color: "red" }}>*</span>
+      </Typography>
+      <Typography variant="h6" className={styles.info}>
+        Enter Vendor's Information <span style={{ color: "red" }}>*</span>
+      </Typography>
+      <div className={styles.signUpSvg}>
+        <DriverSignUpSvg />
+      </div>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Name"
             name="email"
             type="email"
-            placeholder="Email"
             onChange={handleChange}
+            placeholder="Email"
           />
         </div>
         <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Password"
             name="password"
             type="password"
-            placeholder="Name"
             onChange={handleChange}
+            placeholder="Password"
           />
         </div>
         <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Phone Number"
             name="phone"
             type="text"
-            placeholder="Phone No..."
             onChange={handleChange}
+            placeholder="Phone no..."
           />
         </div>
         <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Aadhar Number"
             name="adhar"
             type="text"
-            placeholder="Adhar No..."
             onChange={handleChange}
+            placeholder="Aadhar no..."
           />
         </div>
         <div>
-          <input type="file" onChange={handleUpload} />
+          <TextField type="file" onChange={handleUpload} />
         </div>
         <div>
           <input type="submit" />
         </div>
       </form>
-    </>
+    </div>
   );
 };

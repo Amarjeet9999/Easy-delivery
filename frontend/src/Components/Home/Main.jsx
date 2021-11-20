@@ -23,20 +23,16 @@ function Main() {
         </div>
         <div className={styles.lowerContainer}>
           <div className={styles.cards}>
-            <Link to="/vendorSignUp">
-              <Slide left>
-                <div>
-                  <Vendor className={styles.personIcon} />
-                </div>
-              </Slide>
-            </Link>
-            <Link to="/driverSignUp">
-              <Slide right>
-                <div>
-                  <Driver className={styles.directionsIcon} />
-                </div>
-              </Slide>
-            </Link>
+            <div>
+              <Link to="/vendorSignUp">
+                <Vendor className={styles.personIcon} />
+              </Link>
+            </div>
+            <div>
+              <Link to="/driverSignUp">
+                <Driver className={styles.directionsIcon} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
