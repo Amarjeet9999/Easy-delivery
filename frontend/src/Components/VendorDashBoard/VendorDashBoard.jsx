@@ -277,19 +277,19 @@ export const VendorDashBoard = () => {
             <div className={styles.image}>
               <img src={mainData[0]?.image} alt="" />
             </div>
-          </div>
-          <div>
             <div>
-              <span>Name:</span>
-              {mainData[0]?.driverId[0]?.name}
-            </div>
-            <div>
-              <span>Phone No:</span>
-              {mainData[0]?.driverId[0]?.phone}
-            </div>
-            <div>
-              <span>Vehicle No:</span>
-              {mainData[0]?.driverId[0]?.vehicleNo}
+              <div className={styles.text}>
+                <span>Name:</span>
+                <span>{mainData[0]?.driverId[0]?.name}</span>
+              </div>
+              <div className={styles.text}>
+                <span>Phone No:</span>
+                <span>{mainData[0]?.driverId[0]?.phone}</span>
+              </div>
+              <div className={styles.text}>
+                <span>Vehicle No:</span>
+                <span>{mainData[0]?.driverId[0]?.vehicleNo}</span>
+              </div>
             </div>
           </div>
         </div>
