@@ -228,8 +228,7 @@ export const VendorDashBoard = () => {
           <h1>..You Have No any products</h1>
         </div>
       ) : !prod.status ? (
-        <div>
-          <h1>...Waiting</h1>
+        <div className={styles.sub_container}>
           <div className={styles.list}>
             <div className={styles.route}>
               <div className={styles.text}>
@@ -255,8 +254,7 @@ export const VendorDashBoard = () => {
           </div>
         </div>
       ) : (
-        <div>
-          <div>Accepted...</div>
+        <div className={styles.sub_container}>
           <div className={styles.list}>
             <div className={styles.route}>
               <div className={styles.text}>
@@ -280,7 +278,6 @@ export const VendorDashBoard = () => {
               <img src={mainData[0]?.image} alt="" />
             </div>
           </div>
-
           <div>
             <div>
               <span>Name:</span>
