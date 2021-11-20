@@ -30,6 +30,7 @@ const {
 } = require("./controllers/driverAuth.controllers");
 const packageController = require("./controllers/package.controller");
 const driverController = require("./controllers/drive.control.js");
+const messageController = require("./controllers/message.controller.js");
 
 const connectDB = async () => {
   await connect();
@@ -44,6 +45,7 @@ app.use("/users", userController);
 app.use("/package", packageController);
 app.use("/driver", driverController);
 app.use("/city", cityController);
+app.use("/message", messageController);
 
 ///
 ///

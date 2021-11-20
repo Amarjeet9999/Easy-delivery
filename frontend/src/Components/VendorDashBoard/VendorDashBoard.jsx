@@ -230,6 +230,7 @@ export const VendorDashBoard = () => {
       ) : !prod.status ? (
         <div className={styles.sub_container}>
           <div className={styles.list}>
+            <h4 style={{ color: "red" }}>Finding Perfect Match...</h4>
             <div className={styles.route}>
               <div className={styles.text}>
                 <span>From : </span>
@@ -250,46 +251,76 @@ export const VendorDashBoard = () => {
             </div>
             <div className={styles.image}>
               <img src={mainData[0]?.image} alt="" />
+            </div>
+            <div className={styles.image}>
+              <img
+                style={{ objectFit: "cover", height: "25px" }}
+                src="https://i.pinimg.com/originals/4c/14/02/4c14021095fd20edc900e2e9b91d318e.gif"
+                alt=""
+              />
             </div>
           </div>
         </div>
       ) : (
-        <div className={styles.sub_container}>
-          <div className={styles.list}>
-            <div className={styles.route}>
-              <div className={styles.text}>
-                <span>From : </span>
-                <span>{mainData[0]?.from}</span>
+        <div className={styles.sub_container2}>
+          <div className={styles.list2}>
+            {
+              <h4>
+                You product is Accepted by {mainData[0]?.driverId[0]?.name}
+              </h4>
+            }
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "inherit",
+                margin: "50px 20px",
+              }}
+            >
+              <div className={styles.listData}>
+                <div className={styles.route}>
+                  <div className={styles.text}>
+                    <span>From : </span>
+                    <span>{mainData[0]?.from}</span>
+                  </div>
+                  <div className={styles.text}>
+                    <span>Destination : </span>
+                    <span>{mainData[0]?.to}</span>
+                  </div>
+                </div>
+                <div className={styles.text}>
+                  <span>Item : </span>
+                  <span>{mainData[0]?.packageName}</span>
+                </div>
+                <div className={styles.text}>
+                  <span>Weight : </span>
+                  <span>{mainData[0]?.weight}</span>
+                </div>
+                <div className={styles.image}>
+                  <img src={mainData[0]?.image} alt="" />
+                </div>
               </div>
-              <div className={styles.text}>
-                <span>Destination : </span>
-                <span>{mainData[0]?.to}</span>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gridGap: "10px",
+                  marginTop: "6px",
+                  margin: "0 10px",
+                }}
+              >
+                <div>
+                  <span>Name : </span>
+                  {mainData[0]?.driverId[0]?.name}
+                </div>
+                <div>
+                  <span>Phone No : </span>
+                  {mainData[0]?.driverId[0]?.phone}
+                </div>
+                <div>
+                  <span>Vehicle No : </span>
+                  {mainData[0]?.driverId[0]?.vehicleNo}
+                </div>
               </div>
-            </div>
-            <div className={styles.text}>
-              <span>Item : </span>
-              <span>{mainData[0]?.packageName}</span>
-            </div>
-            <div className={styles.text}>
-              <span>Weight : </span>
-              <span>{mainData[0]?.weight}</span>
-            </div>
-            <div className={styles.image}>
-              <img src={mainData[0]?.image} alt="" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <span>Name:</span>
-              {mainData[0]?.driverId[0]?.name}
-            </div>
-            <div>
-              <span>Phone No:</span>
-              {mainData[0]?.driverId[0]?.phone}
-            </div>
-            <div>
-              <span>Vehicle No:</span>
-              {mainData[0]?.driverId[0]?.vehicleNo}
             </div>
           </div>
         </div>

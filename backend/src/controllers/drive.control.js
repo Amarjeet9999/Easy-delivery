@@ -46,6 +46,7 @@ router.patch("/remove/:id", async (req, res) => {
   }
 });
 
+
 router.get("/:id", async (req, res) => {
   try {
     let driver = await Driver.find({ _id: req.params.id })
