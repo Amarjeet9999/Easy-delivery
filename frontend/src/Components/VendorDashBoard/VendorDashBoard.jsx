@@ -13,6 +13,7 @@ export const VendorDashBoard = () => {
   const [wait, setWait] = useState(false);
   const [id, setId] = useState("");
   const [prod, setProd] = useState("");
+  const packageDetail = JSON.parse(localStorage.getItem("package"));
 
   console.log(id);
   useEffect(() => {
@@ -198,6 +199,10 @@ export const VendorDashBoard = () => {
               <input type="submit" />
             </div>
           </form>
+        </div>
+      ) : packageDetail === null ? (
+        <div>
+          <h1>..You Have No any products</h1>
         </div>
       ) : !prod.status ? (
         <div>
