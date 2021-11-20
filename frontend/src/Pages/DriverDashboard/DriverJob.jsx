@@ -66,20 +66,20 @@ export const DriverJobs = () => {
                 <div>
                   <div className={styles.route}>
                     <div className={styles.text}>
-                      <span>From:</span>
+                      <span>From : </span>
                       <span>{e?.from}</span>
                     </div>
                     <div className={styles.text}>
-                      <span>Destination:</span>
+                      <span>Destination : </span>
                       <span>{e?.to}</span>
                     </div>
                   </div>
                   <div className={styles.text}>
-                    <span>Item: </span>
+                    <span>Item : </span>
                     <span>{e?.packageName}</span>
                   </div>
                   <div className={styles.text}>
-                    <span>Weight:</span>
+                    <span>Weight : </span>
                     <span>{e?.weight}</span>
                   </div>
                 </div>
