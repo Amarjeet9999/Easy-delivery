@@ -133,7 +133,7 @@ export const VendorDashBoard = () => {
     };
   }, [data]);
 
-  console.log("Prod", prod._id);
+  // console.log("Prod", prod._id);
 
   return (
     <>
