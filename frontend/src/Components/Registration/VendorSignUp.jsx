@@ -151,3 +151,6 @@ export const VendorSignUp = () => {
     </div>
   );
 };
+
+
+
