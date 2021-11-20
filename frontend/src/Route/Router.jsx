@@ -51,6 +51,7 @@ export const Router = () => {
           <DriverDash />
         </Route>
         <Route path="/vendorDash" to="/">
+          <NavContainer page={auth} />
           <VendorDashBoard />
         </Route>
       </Switch>

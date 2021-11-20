@@ -118,13 +118,13 @@ export const VendorDashBoard = () => {
 
     channel.bind("updated", (el) => {
       let packageId = JSON.parse(localStorage.getItem("package"));
-      // console.log("Before", packageId.status);
-      // console.log("El", el.status);
+      console.log("Before", packageId.status);
+      console.log("El", el);
       if (el.id === packageId._id) {
         let data = { ...prod, status: el.status };
         setProd(data);
-        // console.log("Matched");
-        // console.log("After", packageId.status);
+        console.log("Matched");
+        console.log("After", packageId.status);
       }
     });
 
