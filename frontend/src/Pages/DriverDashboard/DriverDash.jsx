@@ -21,13 +21,24 @@ export const DriverDash = () => {
   }, []);
 
   React.useEffect(() => {
-    const pusher = new Pusher("dad35ca4556ca6ecf0c3", {
+    const pusher = new Pusher("1a697b90bc54cbe04c2c", {
       cluster: "ap2",
       encrypted: true,
     });
     const channel = pusher.subscribe("package");
     channel.bind("inserted", (el) => {
       setData([...data, el]);
+    });
+
+    channel.bind("updated", (el) => {
+      console.log(el);
+      setData(
+        data.map((e) => {
+          return e._id === el.id ? { ...e, status: el.status } : e;
+        })
+      );
+      console.log("Maybe Update", data[0].status);
+      console.log("ata", data[0].status);
     });
 
     return () => {
