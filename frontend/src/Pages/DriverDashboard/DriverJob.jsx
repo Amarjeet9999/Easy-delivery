@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { NavContainer } from "../../Components/Navbar/NavContainer";
 import styles from "./DriverDash.module.css";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const DriverJobs = () => {
   const [driver, setDriver] = React.useState("");
@@ -41,6 +42,14 @@ export const DriverJobs = () => {
   return (
     <div className={styles.jobs_container}>
       <NavContainer page="home" />
+      <div className={styles.sections}>
+        <span>
+          <Link to="/driverDash">New Vendors</Link>
+        </span>
+        <span>
+          <Link to="driverJobs">Accepted Vendors</Link>
+        </span>
+      </div>
       <div className={styles.jobs_sub_container}>
         {driver !== "" &&
           driver?.jobs.map((e) => {

@@ -7,12 +7,18 @@ export const VendorDashBoard = () => {
   const [image, setImage] = useState(null);
   const [data, setData] = useState({});
   const [wait, setWait] = useState(false);
-
+  const [deatil, setDetail] = useState({});
+  const [id, setId] = useState("");
+  console.log(id);
   useEffect(() => {
     if (image) {
       handleUpload();
     }
   }, [image]);
+
+  useEffect(() => {
+    handleDetails();
+  }, []);
 
   const fileUpload = (e) => {
     if (e.target.files[0]) {
@@ -67,11 +73,18 @@ export const VendorDashBoard = () => {
           status: false,
         })
         .then((res) => {
+          setId(res.data.data._id);
           console.log(res.data);
         });
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleDetails = async () => {
+    await axios.get("http://localhost:5000/package").then((e) => {
+      console.log(e.data.data);
+    });
   };
 
   const handleWait = () => {

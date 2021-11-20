@@ -43,6 +43,7 @@ app.use("/driver-register", driverRegister);
 app.use("/users", userController);
 app.use("/package", packageController);
 app.use("/driver", driverController);
+app.use("/city", cityController);
 
 ///
 ///
