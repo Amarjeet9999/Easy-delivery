@@ -22,8 +22,11 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const package = await Package.findById(req.params.id).lean().exec();
-    return res.status(200).json({ data: package });
+    let package = await Package.find({ _id: req.params.id })
+      .populate("driverId")
+      .lean()
+      .exec();
+    return res.status(203).json({ data: package });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -33,7 +36,7 @@ router.patch("/:id", async (req, res) => {
   try {
     let package = await Package.findById(req.params.id);
     package.status = !package.status;
-    // console.log(package);
+    package.driverId = [req.body.driverId];
 
     package = await Package.findByIdAndUpdate(req.params.id, package)
       .lean()

@@ -30,7 +30,9 @@ export const DriverJobs = () => {
         fetchUser();
       });
     return await axios
-      .patch(`http://localhost:5000/package/${id}`)
+      .patch(`http://localhost:5000/package/${id}`, {
+        driverId: userId?.user?._id,
+      })
       .then((res) => console.log(res.data));
   };
 

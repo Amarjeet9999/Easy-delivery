@@ -47,9 +47,14 @@ export const DriverDash = () => {
   }, [data]);
 
   const handleClick = async (id) => {
-    await axios.patch(`http://localhost:5000/package/${id}`).then((res) => {
-      // console.log(res.data);
-    });
+    let userId = JSON.parse(localStorage.getItem("user"));
+    await axios
+      .patch(`http://localhost:5000/package/${id}`, {
+        driverId: userId?.user?._id,
+      })
+      .then((res) => {
+        // console.log(res.data);
+      });
     await axios
       .patch(`http://localhost:5000/driver/${user._id}`, {
         jobs: [id],

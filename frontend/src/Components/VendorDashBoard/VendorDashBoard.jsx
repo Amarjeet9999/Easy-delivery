@@ -64,7 +64,6 @@ export const VendorDashBoard = () => {
   };
 
   const addPackage = async (el) => {
-    console.log(el);
     try {
       await axios
         .post("http://localhost:5000/package", {
@@ -74,6 +73,7 @@ export const VendorDashBoard = () => {
           image: el.url,
           weight: el.weight,
           status: false,
+          driverId: "",
         })
         .then((res) => {
           localStorage.setItem("package", JSON.stringify(res.data.data));

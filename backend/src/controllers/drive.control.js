@@ -1,5 +1,4 @@
 const express = require("express");
-const { populate } = require("../models/driver.model");
 const router = express.Router();
 const Driver = require("../models/driver.model");
 

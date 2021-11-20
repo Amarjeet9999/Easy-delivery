@@ -8,6 +8,12 @@ const packageSchema = new mongoose.Schema(
     image: { type: String, required: true },
     weight: { type: String, required: true },
     status: { type: Boolean, required: true },
+    driverId: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "driver",
+      },
+    ],
   },
   {
     timestamps: true,
