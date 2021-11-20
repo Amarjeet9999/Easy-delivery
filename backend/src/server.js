@@ -10,9 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 const pusher = new Pusher({
-  appId: "1300781",
-  key: "dad35ca4556ca6ecf0c3",
-  secret: "96a47e8a64ab32fceed9",
+  appId: "1300812",
+  key: "1a697b90bc54cbe04c2c",
+  secret: "5be03c3dcd6ea6e56959",
   cluster: "ap2",
   encrypted: true,
 });
@@ -55,11 +55,11 @@ db.once("open", () => {
   const changeStream = taskCollection.watch();
 
   changeStream.on("change", (change) => {
-    // console.log(change);
+    console.log("Some Change Happened");
 
     if (change.operationType === "insert") {
       const package = change.fullDocument;
-      // console.log("Package", package);
+      console.log("Package", package);
       pusher.trigger("package", "inserted", {
         id: package._id,
         from: package.from,
@@ -71,8 +71,13 @@ db.once("open", () => {
       });
     } else if (change.operationType === "delete") {
       pusher.trigger(channel, "deleted", change.documentKey._id);
-    } else {
-      console.log("Error triggering Pusher");
+    } else if (change.operationType === "update") {
+      const package = change.documentKey._id;
+      const package2 = change.updateDescription;
+      pusher.trigger("package", "updated", {
+        status: package2.updatedFields.status,
+        id: package,
+      });
     }
   });
 });

@@ -29,18 +29,16 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
 router.patch("/:id", async (req, res) => {
   try {
     let package = await Package.findById(req.params.id);
-    console.log("Before", package);
     package.status = !package.status;
-    console.log("After", package);
+    // console.log(package);
 
-    post = await Package.findByIdAndUpdate(req.params.id, package)
+    package = await Package.findByIdAndUpdate(req.params.id, package)
       .lean()
       .exec();
-    return res.status(203).json({ post });
+    return res.status(203).json({ data: package });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
