@@ -9,6 +9,7 @@ import { DriverDash } from "../Pages/DriverDashboard/DriverDash";
 import { NavContainer } from "../Components/Navbar/NavContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess, loginLoading } from "../Redux/Auth/action";
+import { DriverJobs } from "../Pages/DriverDashboard/DriverJob";
 
 export const Router = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,10 @@ export const Router = () => {
         </Route>
         <PrivateRoute path="/driverDash" to="/">
           <DriverDash />
+        </PrivateRoute>
+
+        <PrivateRoute path="/driverJobs" to="/">
+          <DriverJobs />
         </PrivateRoute>
       </Switch>
     </div>

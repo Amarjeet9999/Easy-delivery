@@ -12,6 +12,7 @@ export const DriverDash = () => {
 
   const fetchData = async () => {
     await axios.get("http://localhost:5000/package").then((res) => {
+      console.log("Called");
       setData(res.data.data);
     });
   };
@@ -45,10 +46,10 @@ export const DriverDash = () => {
   }, [data]);
 
   const handleClick = async (id) => {
-    await axios
-      .patch(`http://localhost:5000/package/${id}`)
-      .then((res) => console.log(res.data));
-
+    await axios.patch(`http://localhost:5000/package/${id}`).then((res) => {
+      // console.log(res.data);
+    });
+    fetchData();
     await axios
       .patch(`http://localhost:5000/driver/${user._id}`, {
         jobs: [id],
@@ -57,6 +58,8 @@ export const DriverDash = () => {
         //  console.log("Whole data", data[0].status);
       });
   };
+
+  console.log(data);
 
   return (
     <div className={styles.container}>
