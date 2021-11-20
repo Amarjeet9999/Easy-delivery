@@ -13,7 +13,10 @@ export const VendorDashBoard = () => {
   const [wait, setWait] = useState(false);
   const [id, setId] = useState("");
   const [prod, setProd] = useState("");
+  const [mainData, setMainData] = useState([]);
   const packageDetail = JSON.parse(localStorage.getItem("package"));
+
+  console.log(mainData);
 
   console.log(id);
   useEffect(() => {
@@ -24,6 +27,10 @@ export const VendorDashBoard = () => {
 
   useEffect(() => {
     handleDetails();
+  }, []);
+
+  useEffect(() => {
+    loadData();
   }, []);
 
   const fileUpload = (e) => {
@@ -102,14 +109,27 @@ export const VendorDashBoard = () => {
     });
   };
 
+  const loadData = async () => {
+    await axios
+      .get(`http://localhost:5000/package/${packageDetail._id}`)
+      .then((e) => {
+        setMainData(e.data.data);
+        console.log("item", e.data);
+      });
+  };
+
   const handleWait = () => {
-    setWait(!wait);
+    setWait(true);
+  };
+
+  const handledet = () => {
+    setWait(false);
   };
 
   // Important Function Be Aware
   React.useEffect(() => {
     waitingData();
-    const pusher = new Pusher("e028bc463a9bc675142e", {
+    const pusher = new Pusher("ab5a3318322a6c2ce338", {
       cluster: "ap2",
       encrypted: true,
     });
@@ -139,7 +159,7 @@ export const VendorDashBoard = () => {
   return (
     <>
       <div className={styles.headingContainer}>
-        <div onClick={handleWait}>Product Detail</div>
+        <div onClick={handledet}>Product Detail</div>
         <div onClick={handleWait}>Waiting Area</div>
       </div>
       {!wait ? (
@@ -207,10 +227,59 @@ export const VendorDashBoard = () => {
       ) : !prod.status ? (
         <div>
           <h1>...Waiting</h1>
+          <div className={styles.list}>
+            <div className={styles.route}>
+              <div className={styles.text}>
+                <span>From : </span>
+                <span>{mainData[0]?.from}</span>
+              </div>
+              <div className={styles.text}>
+                <span>Destination : </span>
+                <span>{mainData[0]?.to}</span>
+              </div>
+            </div>
+            <div className={styles.text}>
+              <span>Item : </span>
+              <span>{mainData[0]?.packageName}</span>
+            </div>
+            <div className={styles.text}>
+              <span>Weight : </span>
+              <span>{mainData[0]?.weight}</span>
+            </div>
+          </div>
+          <div className={styles.image}>
+            <img src={mainData[0]?.image} alt="" />
+          </div>
         </div>
       ) : (
         <div>
-          <h1>...Accepted</h1>
+          <div className={styles.list}>
+            <div className={styles.route}>
+              <div className={styles.text}>
+                <span>From : </span>
+                <span>{mainData[0]?.from}</span>
+              </div>
+              <div className={styles.text}>
+                <span>Destination : </span>
+                <span>{mainData[0]?.to}</span>
+              </div>
+            </div>
+            <div className={styles.text}>
+              <span>Item : </span>
+              <span>{mainData[0]?.packageName}</span>
+            </div>
+            <div className={styles.text}>
+              <span>Weight : </span>
+              <span>{mainData[0]?.weight}</span>
+            </div>
+          </div>
+          <div className={styles.image}>
+            <img src={mainData[0]?.image} alt="" />
+          </div>
+          <div>
+            <div>{mainData[0]?.driverId[0]?.name}</div>
+            <div></div>
+          </div>
         </div>
       )}
     </>
