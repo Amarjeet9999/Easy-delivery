@@ -1,53 +1,36 @@
+body {
+  background-color: #f0f2f7;
+}
+
 .container {
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
-.login_container,
-.container {
-  display: flex;
-}
-
-.login_container {
-  width: 30%;
-  height: 40%;
-  border: 1px solid black;
-  border-radius: 10px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-/************************ input box css ************************* */
-
-.input_box {
-  border-radius: 10px;
-  border: 1px solid black;
-  width: 80%;
-  height: 30px;
-  overflow: hidden;
-}
-.input_box > input {
-  width: 97%;
-  height: 100%;
-  border: none;
+  width: 60%;
   text-align: center;
-  font-size: 18px;
+  margin: auto;
+  margin-top: 60px;
 }
-
-.input_box > input:focus {
-  outline: none;
+.login_container > div {
+  margin: 30px;
 }
-
-/************************ ********** *************************** */
-
-.button_box {
-  width: 80%;
-  display: flex;
+.button_box > * {
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 15px;
+  height: 3.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
 }
-
-.radio{
-  display: flex;
+.login_container > div > * {
+  width: 336px;
+}
+.login_container > div:nth-of-type(3) {
+  width: 199px;
+  margin: auto;
+}
+.loginSvg > * {
+  width: 22%;
+  height: 18%;
+}
+.login_container {
+  margin-top: 40px;
 }
