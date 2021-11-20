@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { storage } from "../Registration/firebase";
+import { Wrap } from "./VendorStyle";
 export const VendorDashBoard = () => {
   const [url, setUrl] = useState("");
   const [image, setImage] = useState(null);
   const [data, setData] = useState({});
+  const [wait, setWait] = useState(false);
 
   useEffect(() => {
     if (image) {
@@ -65,60 +67,74 @@ export const VendorDashBoard = () => {
           status: false,
         })
         .then((res) => {
-          // console.log(res.data);
+          console.log(res.data);
         });
     } catch (err) {
       console.log(err);
     }
   };
 
+  const handleWait = () => {
+    setWait(!wait);
+  };
+
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
+      <Wrap>
+        <div onClick={handleWait}>Product Detail</div>
+        <div onClick={handleWait}>Waiting Area</div>
+      </Wrap>
+      {!wait ? (
+        <div>
+          <form onSubmit={handleSubmit}>
             <div>
-              <input
-                name="name"
-                type="text"
-                placeholder="Product name"
-                onChange={handleChagne}
-              />
+              <div>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Product name"
+                  onChange={handleChagne}
+                />
+              </div>
+              <div>
+                <input
+                  name="from"
+                  type="text"
+                  placeholder="From"
+                  onChange={handleChagne}
+                />
+              </div>
+              <div>
+                <input
+                  name="to"
+                  type="text"
+                  placeholder="To"
+                  onChange={handleChagne}
+                />
+              </div>
             </div>
-            <div>
-              <input
-                name="from"
-                type="text"
-                placeholder="From"
-                onChange={handleChagne}
-              />
-            </div>
-            <div>
-              <input
-                name="to"
-                type="text"
-                placeholder="To"
-                onChange={handleChagne}
-              />
-            </div>
-          </div>
 
-          <div>
-            <input
-              name="weight"
-              type="text"
-              placeholder="Product Weight"
-              onChange={handleChagne}
-            />
-          </div>
-          <div>
-            <input type="file" onChange={fileUpload} />
-          </div>
-          <div>
-            <input type="submit" />
-          </div>
-        </form>
-      </div>
+            <div>
+              <input
+                name="weight"
+                type="text"
+                placeholder="Product Weight"
+                onChange={handleChagne}
+              />
+            </div>
+            <div>
+              <input type="file" onChange={fileUpload} />
+            </div>
+            <div>
+              <input type="submit" />
+            </div>
+          </form>
+        </div>
+      ) : (
+        <div>
+          <h1>Hello</h1>
+        </div>
+      )}
     </>
   );
 };

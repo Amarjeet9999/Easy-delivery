@@ -33,3 +33,18 @@
 .list:hover{
     color: red;
 }
+
+/* jobs */
+
+.jobs_container{
+  border: 1px solid black;
+  width: 100vw;
+}
+.jobs_sub_container{
+  margin: auto;
+  border: 1px solid black;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(4,20%);
+  justify-content: space-evenly;
+}
