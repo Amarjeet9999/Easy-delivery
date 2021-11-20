@@ -6,6 +6,7 @@ import {
   RadioGroup,
   FormControl,
   FormControlLabel,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
@@ -15,6 +16,7 @@ import {
   loginSuccess,
   loginError,
 } from "../../Redux/Auth/action.js";
+import { ReactComponent as LoginSvg } from "./login.svg";
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -49,9 +51,14 @@ export const LoginPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.loginSvg}>
+        <LoginSvg />
+      </div>
       <div className={styles.login_container}>
         <div className={styles.input_box}>
-          <input
+          <TextField
+            id="outlined-name"
+            label="E-mail Address"
             type="email"
             name="email"
             placeholder="Enter Email"
@@ -61,7 +68,9 @@ export const LoginPage = () => {
           />
         </div>
         <div className={styles.input_box}>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Password"
             type="password"
             name="password"
             placeholder="Enter Password"
@@ -97,12 +106,7 @@ export const LoginPage = () => {
           </FormControl>
         </div>
         <div className={styles.button_box}>
-          <Button
-            variant="contained"
-            size="medium"
-            style={{ width: "100%" }}
-            onClick={handleLogin}
-          >
+          <Button variant="contained" size="medium" onClick={handleLogin}>
             Log in
           </Button>
         </div>
