@@ -4,7 +4,8 @@ import Home from "../Components/Home/Home";
 import { VendorSignUp } from "../Components/Registration/VendorSignUp";
 import { DriverSignUp } from "../Components/Registration/DriverSignUp";
 import { LoginPage } from "../Pages/LoginPage/LoginPage";
-
+import { PrivateRoute } from "./PrivateRoute";
+import { DriverDash } from "../Pages/DriverDashboard/DriverDash";
 export const Router = () => {
   return (
     <div>
@@ -21,6 +22,9 @@ export const Router = () => {
         <Route path="/login">
           <LoginPage />
         </Route>
+        <PrivateRoute path="/driverDash">
+          <DriverDash />
+        </PrivateRoute>
       </Switch>
     </div>
   );
