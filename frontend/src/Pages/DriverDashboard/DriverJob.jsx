@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 export const DriverJobs = () => {
   const [driver, setDriver] = React.useState("");
+  // console.log("Hello");
 
   const fetchUser = async () => {
     let userId = JSON.parse(localStorage.getItem("user"));
@@ -21,7 +22,8 @@ export const DriverJobs = () => {
         jobs: [id],
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        fetchUser();
       });
     return await axios
       .patch(`http://localhost:5000/package/${id}`)
@@ -31,7 +33,7 @@ export const DriverJobs = () => {
   React.useState(() => {
     fetchUser();
   }, []);
-  console.log("Driver", driver);
+  // console.log("Driver", driver);
 
   return (
     <>
