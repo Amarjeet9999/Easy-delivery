@@ -1,0 +1,68 @@
+.signUpFormContainer {
+  text-align: center;
+  padding-top: 35px;
+  background-color: #f0f2f7;
+  height: 88vh;
+}
+.form {
+  display: grid;
+  grid-template-areas:
+    "a . b"
+    "c . d"
+    "e . f"
+    "g . h";
+  width: 50%;
+  margin: auto;
+}
+.form > div:nth-of-type(1) {
+  grid-area: a;
+}
+.form > div:nth-of-type(2) {
+  grid-area: b;
+}
+.form > div:nth-of-type(3) {
+  grid-area: c;
+}
+.form > div:nth-of-type(4) {
+  grid-area: d;
+}
+.form > div:nth-of-type(5) {
+  grid-area: e;
+}
+.form > div:nth-of-type(6) {
+  grid-area: f;
+}
+.form > div:nth-of-type(7) {
+  grid-area: g;
+}
+.form > div:nth-of-type(8) {
+  grid-area: h;
+}
+.form > div:nth-of-type(8) > * {
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 15px;
+  height: 3.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.form > div > * {
+  width: 350px;
+  margin: 25px;
+}
+.signUpSvg > * {
+  width: 12%;
+  height: 18%;
+  margin-bottom: 35px;
+}
+.drivingLicense {
+  position: absolute;
+  top: 365px;
+  left: 426px;
+}
+.info {
+  position: absolute;
+  top: 230px;
+  left: 420px;
+}

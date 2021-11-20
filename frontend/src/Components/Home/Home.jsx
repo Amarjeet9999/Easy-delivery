@@ -6,7 +6,7 @@ import Main from "./Main";
 function Home() {
   return (
     <>
-      <NavContainer page={"home"} />
+      <NavContainer page="landing" />
       <Main />
       <Banner />
       <Footer />

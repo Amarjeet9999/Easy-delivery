@@ -1,3 +1,4 @@
+import { TextField, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +8,8 @@ import {
   registerSuccess,
   registerError,
 } from "../../Redux/Auth/action";
+import styles from "./VendorSignUp.module.css";
+import { ReactComponent as DriverSignUpSvg } from "../Home/svg/vendorSignUp.svg";
 
 export const VendorSignUp = () => {
   const dispatch = useDispatch();
@@ -62,6 +65,7 @@ export const VendorSignUp = () => {
   };
 
   const handleRegister = async (el) => {
+    console.log("EL", el);
     try {
       dispatch(registerLoading());
       await axios
@@ -86,55 +90,64 @@ export const VendorSignUp = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.vendorSignUp}>
+      <Typography variant="caption" className={styles.drivingLicense}>
+        Identification <span style={{ color: "red" }}>*</span>
+      </Typography>
+      <Typography variant="h6" className={styles.info}>
+        Enter Vendor's Information <span style={{ color: "red" }}>*</span>
+      </Typography>
+      <div className={styles.signUpSvg}>
+        <DriverSignUpSvg />
+      </div>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div>
-          <input
-            placeholder="Email"
+          <TextField
+            id="outlined-name"
+            label="Name"
             name="email"
             type="email"
             onChange={handleChange}
+            placeholder="Email"
           />
         </div>
         <div>
-          <input
-            placeholder="Name"
-            name="name"
-            type="text"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <input
-            placeholder="Password"
+          <TextField
+            id="outlined-name"
+            label="Password"
             name="password"
             type="password"
             onChange={handleChange}
+            placeholder="Password"
           />
         </div>
         <div>
-          <input
-            placeholder="Phone No"
+          <TextField
+            id="outlined-name"
+            label="Phone Number"
             name="phone"
             type="text"
             onChange={handleChange}
+            placeholder="Phone no..."
           />
         </div>
         <div>
-          <input
-            placeholder="Aadhar"
-            name="aadhar"
+          <TextField
+            id="outlined-name"
+            label="Aadhar Number"
+            name="adhar"
             type="text"
             onChange={handleChange}
+            placeholder="Aadhar no..."
           />
         </div>
         <div>
-          <input type="file" onChange={handleUpload} />
+          <TextField type="file" onChange={handleUpload} />
         </div>
         <div>
           <input type="submit" />
         </div>
       </form>
-    </>
+    </div>
   );
 };

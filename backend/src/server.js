@@ -55,11 +55,11 @@ db.once("open", () => {
   const changeStream = taskCollection.watch();
 
   changeStream.on("change", (change) => {
-    console.log(change);
+    // console.log(change);
 
     if (change.operationType === "insert") {
       const package = change.fullDocument;
-      console.log("Package", package);
+      // console.log("Package", package);
       pusher.trigger("package", "inserted", {
         id: package._id,
         from: package.from,
@@ -67,6 +67,7 @@ db.once("open", () => {
         packageName: package.packageName,
         image: package.image,
         weight: package.weight,
+        status: package.status,
       });
     } else if (change.operationType === "delete") {
       pusher.trigger(channel, "deleted", change.documentKey._id);

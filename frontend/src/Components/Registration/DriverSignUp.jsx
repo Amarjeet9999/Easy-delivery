@@ -7,6 +7,9 @@ import {
   registerSuccess,
   registerError,
 } from "../../Redux/Auth/action";
+import styles from "./DriverSignUp.module.css";
+import { TextField, Typography } from "@mui/material";
+import { ReactComponent as DriverSignUpSvg } from "../Home/svg/driverSignUp.svg";
 
 export const DriverSignUp = () => {
   const dispatch = useDispatch();
@@ -58,7 +61,7 @@ export const DriverSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let finalPayload = { ...formData, url: url };
-    // console.log(finalPayload);
+    console.log(finalPayload);
     handleRegister(finalPayload);
   };
 
@@ -89,18 +92,21 @@ export const DriverSignUp = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.signUpFormContainer}>
+      <Typography variant="caption" className={styles.drivingLicense}>
+        Driving License Identification<span style={{ color: "red" }}>*</span>
+      </Typography>
+      <Typography variant="h6" className={styles.info}>
+        Enter Driver's Information <span style={{ color: "red" }}>*</span>
+      </Typography>
+      <div className={styles.signUpSvg}>
+        <DriverSignUpSvg />
+      </div>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div>
-          <input
-            name="email"
-            onChange={handleChange}
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-        <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Name"
             name="name"
             onChange={handleChange}
             type="text"
@@ -108,19 +114,22 @@ export const DriverSignUp = () => {
           />
         </div>
         <div>
-          <label>Driving Licence</label>
-          <input onChange={fileUpload} type="file" />
-        </div>
-        <div>
-          <input
-            name="aadhar"
+          <TextField
+            id="outlined-name"
+            label="E-mail Address"
+            name="email"
             onChange={handleChange}
-            type="text"
-            placeholder="Aadhar no.."
+            type="email"
+            placeholder="Email"
           />
         </div>
         <div>
-          <input
+          <TextField onChange={fileUpload} type="file" />
+        </div>
+        <div>
+          <TextField
+            id="outlined-name"
+            label="Phone Number"
             name="phone"
             onChange={handleChange}
             type="text"
@@ -128,7 +137,20 @@ export const DriverSignUp = () => {
           />
         </div>
         <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Aadhar Number"
+            name="aadhar"
+            onChange={handleChange}
+            type="text"
+            placeholder="Aadhar no.."
+          />
+        </div>
+
+        <div>
+          <TextField
+            id="outlined-name"
+            label="Vehicle Number"
             name="vehicle"
             onChange={handleChange}
             type="text"
@@ -136,7 +158,9 @@ export const DriverSignUp = () => {
           />
         </div>
         <div>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Password"
             name="password"
             onChange={handleChange}
             type="password"
@@ -147,6 +171,6 @@ export const DriverSignUp = () => {
           <input onChange={handleChange} type="submit" />
         </div>
       </form>
-    </>
+    </div>
   );
 };

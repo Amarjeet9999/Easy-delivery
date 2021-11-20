@@ -1,42 +1,40 @@
-// import React from "react";
+import React from "react";
 import styles from "./Nav.module.css";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
+// import { useDispatch } from "react-redux";
+// import { locationSuccess, locationLoading } from "../../Redux/Location/action";
 const ipLocation = require("iplocation");
 
 export const NavClient = () => {
-  const [ip, setIp] = useState("");
-  const [location, setLocation] = useState("");
+  const [autoLoco, setAutoLoco] = useState("");
   const [userLoco, setUserLoco] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  // const dispatch = useDispatch();
 
   const handleClick = (e) => {
     console.log(userLoco);
   };
 
-  //   useEffect(() => {
-  // axios
-  //   .get("https://geolocation-db.com/json/")
-  //   .then((res) => {
-  // setIp(res.data.IPv4);
-  //   })
-  //   .then(() => {
-  // let { city } = ipLocation(ip);
-  // setLocation(city);
-  //   })
-  //   .finally(console.log(location));
-  //   ?.finally(() => {
-  //     let { city } = ipLocation(ip);
-  //     setLocation(city);
-  //     console.log("temp:", city);
-  //   });
-  //   }, []);
+  const getLocation = async () => {
+    let temp = JSON.parse(localStorage.getItem("myIp"));
+    await ipLocation(temp).then(({ city }) => {
+      setAutoLoco(city);
+      // dispatch(locationSuccess(city));
+      console.log("autoLocation", autoLoco);
+    });
+  };
 
   useEffect(() => {
+    // dispatch(locationLoading());
     axios.get("https://geolocation-db.com/json/").then((res) => {
       localStorage.setItem("myIp", JSON.stringify(res.data.IPv4));
+      setIsLoading(false);
     });
-  }, []);
+
+    if (!isLoading) getLocation();
+  });
 
   return (
     <div className={styles.driver_nav_container}>

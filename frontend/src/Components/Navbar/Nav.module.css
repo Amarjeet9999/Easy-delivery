@@ -11,7 +11,8 @@
 }
 .container,
 .landing_container,
-.home_container,.driver_nav_container {
+.home_container,
+.driver_nav_container {
   display: flex;
 }
 
@@ -20,12 +21,10 @@
   width: 98%;
   border: 1px solid red;
   height: 100%;
-  padding: 0% 2% 0% 0%;
+  padding: 0% 1.8% 0% 0%;
   align-items: center;
   justify-content: flex-end;
 }
-
-
 
 /*  client */
 
@@ -54,5 +53,3 @@
 .input_box > input:focus {
   outline: none;
 }
-
-
