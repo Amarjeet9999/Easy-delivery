@@ -6,7 +6,10 @@ import styles from "./Main.module.css";
 
 import { ReactComponent as Driver } from "./svg/driver.svg";
 import { ReactComponent as Vendor } from "./svg/vendor1.svg";
+import { useSelector } from "react-redux";
+
 function Main() {
+  const { auth, role } = useSelector((state) => state.auth);
   return (
     <>
       <div className={styles.homeContainer}>
@@ -24,14 +27,26 @@ function Main() {
         <div className={styles.lowerContainer}>
           <div className={styles.cards}>
             <div>
-              <Link to="/vendorSignUp">
-                <Vendor className={styles.personIcon} />
-              </Link>
+              {auth && role === "user" ? (
+                <Link to="/vendorDash">
+                  <Vendor className={styles.personIcon} />
+                </Link>
+              ) : (
+                <Link to="/vendorSignUp">
+                  <Vendor className={styles.personIcon} />
+                </Link>
+              )}
             </div>
             <div>
-              <Link to="/driverSignUp">
-                <Driver className={styles.directionsIcon} />
-              </Link>
+              {auth && role === "driver" ? (
+                <Link to="/driverDash">
+                  <Driver className={styles.directionsIcon} />
+                </Link>
+              ) : (
+                <Link to="/driverSignUp">
+                  <Driver className={styles.directionsIcon} />
+                </Link>
+              )}
             </div>
           </div>
         </div>
