@@ -39,7 +39,6 @@ export const LoginPage = () => {
         .then((res) => {
           const action = loginSuccess(res.data);
           dispatch(action);
-          console.log(url);
           localStorage.setItem("user", JSON.stringify(res.data));
         });
     } catch (err) {

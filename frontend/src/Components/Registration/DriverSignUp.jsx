@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  registerLoading,
+  registerSuccess,
+  registerError,
+} from "../../Redux/Auth/action";
 import styles from "./DriverSignUp.module.css";
 import { TextField, Typography } from "@mui/material";
 import { ReactComponent as DriverSignUpSvg } from "../Home/svg/driverSignUp.svg";
 
 export const DriverSignUp = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
   const [url, setUrl] = useState("");
   const [image, setImage] = useState(null);
+
+  // const { user, token, auth } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (image) {
@@ -52,13 +61,14 @@ export const DriverSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let finalPayload = { ...formData, url: url };
-    // console.log(finalPayload);
+    console.log(finalPayload);
     handleRegister(finalPayload);
   };
 
   const handleRegister = async (el) => {
+    console.log(el);
     try {
-      console.log("EL", el);
+      dispatch(registerLoading());
       await axios
         .post("http://localhost:5000/driver-register", {
           email: el.email,
@@ -71,10 +81,13 @@ export const DriverSignUp = () => {
           roles: "driver",
         })
         .then((res) => {
-          console.log(res.data);
+          const action = registerSuccess(res.data);
+          dispatch(action);
           localStorage.setItem("user", JSON.stringify(res.data));
         });
     } catch (err) {
+      const action = registerError("wrong credentials");
+      dispatch(action);
       console.log(err);
     }
   };

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const axios = require("axios").default;
 const bcrypt = require("bcryptjs");
-const validator = require("aadhaar-validator");
+// const validator = require("aadhaar-validator");
 
 const Driver = require("../models/driver.model");
 
@@ -17,7 +17,7 @@ const checkPass = (given, real) => {
 // Registeration
 const driverRegister = async (req, res) => {
   try {
-    if (!validator.isValidNumber(req.body.aadhar))
+    if (req.body.aadhar.length < 12)
       return res.status(400).json({
         status: "error",
         message: "Aadhar is not valid",
@@ -115,4 +115,11 @@ const checkUsers = (users, email, pass) => {
   return false;
 };
 
-module.exports = { driverRegister, driverLogin, loginForDeploy };
+
+
+module.exports = {
+  driverRegister,
+  driverLogin,
+  loginForDeploy,
+  
+};

@@ -23,16 +23,16 @@ export const loginError = (err) => ({
 });
 
 export const registerLoading = () => ({
-  type: LOGIN_LOADING,
+  type: REGISTER_LOADING,
 });
 
 export const registerSuccess = (data) => ({
-  type: LOGIN_SUCCESS,
+  type: REGISTER_SUCCESS,
   payload: data,
 });
 
 export const registerError = (err) => ({
-  type: LOGIN_ERROR,
+  type: REGISTER_ERROR,
   payload: err,
 });
 

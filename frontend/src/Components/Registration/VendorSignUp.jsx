@@ -1,13 +1,22 @@
 import { TextField, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import {
+  registerLoading,
+  registerSuccess,
+  registerError,
+} from "../../Redux/Auth/action";
 import styles from "./VendorSignUp.module.css";
 import { ReactComponent as DriverSignUpSvg } from "../Home/svg/vendorSignUp.svg";
 
 export const VendorSignUp = () => {
+  const dispatch = useDispatch();
   const [url, setUrl] = useState("");
   const [formData, setFormData] = useState({});
   const [image, setImage] = useState(null);
+  // const { user, token, auth, role } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (image) {
@@ -51,9 +60,33 @@ export const VendorSignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let load = { ...formData, url: url };
-    console.log(load);
+    handleRegister(load);
+  };
+
+  const handleRegister = async (el) => {
+    console.log("EL", el);
+    try {
+      dispatch(registerLoading());
+      await axios
+        .post("http://localhost:5000/user-register", {
+          email: el.email,
+          name: "name",
+          aadhar: el.aadhar,
+          phone: el.phone,
+          password: el.password,
+          roles: "user",
+        })
+        .then((res) => {
+          const action = registerSuccess(res.data);
+          dispatch(action);
+          localStorage.setItem("user", JSON.stringify(res.data));
+        });
+    } catch (err) {
+      const action = registerError("wrong credentials");
+      dispatch(action);
+      console.log(err);
+    }
   };
 
   return (
@@ -71,7 +104,7 @@ export const VendorSignUp = () => {
         <div>
           <TextField
             id="outlined-name"
-            label="Name"
+            label="Email"
             name="email"
             type="email"
             onChange={handleChange}
@@ -102,7 +135,7 @@ export const VendorSignUp = () => {
           <TextField
             id="outlined-name"
             label="Aadhar Number"
-            name="adhar"
+            name="aadhar"
             type="text"
             onChange={handleChange}
             placeholder="Aadhar no..."
@@ -118,3 +151,6 @@ export const VendorSignUp = () => {
     </div>
   );
 };
+
+
+

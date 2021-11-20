@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { storage } from "../Registration/firebase";
 export const VendorDashBoard = () => {
@@ -48,7 +49,26 @@ export const VendorDashBoard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let finalData = { ...data, url: url };
-    console.log(finalData);
+    addPackage(finalData);
+  };
+
+  const addPackage = async (el) => {
+    console.log(el);
+    try {
+      await axios
+        .post("http://localhost:5000/package", {
+          from: el.from,
+          to: el.to,
+          packageName: el.name,
+          image: el.url,
+          weight: el.weight,
+        })
+        .then((res) => {
+          // console.log(res.data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -56,6 +76,14 @@ export const VendorDashBoard = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <div>
+            <div>
+              <input
+                name="name"
+                type="text"
+                placeholder="Product name"
+                onChange={handleChagne}
+              />
+            </div>
             <div>
               <input
                 name="from"
@@ -77,7 +105,7 @@ export const VendorDashBoard = () => {
           <div>
             <input
               name="weight"
-              type="number"
+              type="text"
               placeholder="Product Weight"
               onChange={handleChagne}
             />

@@ -11,6 +11,12 @@ const driverSchema = new mongoose.Schema(
     vehicleNo: { type: String, required: true },
     password: { type: String, required: true },
     roles: { type: String, required: true },
+    jobs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
+      },
+    ],
   },
   {
     timestamps: true,
