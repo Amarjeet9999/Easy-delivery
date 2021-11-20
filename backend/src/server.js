@@ -8,6 +8,7 @@ app.use(express.json());
 
 // Controllers
 const userController = require("./controllers/users.controller");
+const cityController = require("./controllers/cities.controller");
 const {
   userRegister,
   userLogin,
@@ -22,7 +23,7 @@ app.use("/user-register", userRegister);
 app.use("/driver-login", driverLogin);
 app.use("/driver-register", driverRegister);
 app.use("/users", userController);
-
+app.use("/city", cityController);
 const PORT = process.env.PORT;
 module.exports = start = async () => {
   await connect();
