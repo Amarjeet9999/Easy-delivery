@@ -82,20 +82,20 @@ export const DriverDash = () => {
                 <div>
                   <div className={styles.route}>
                     <div className={styles.text}>
-                      <span>From:</span>
+                      <span>From : </span>
                       <span>{el?.from}</span>
                     </div>
                     <div className={styles.text}>
-                      <span>Destination:</span>
+                      <span>Destination : </span>
                       <span>{el?.to}</span>
                     </div>
                   </div>
                   <div className={styles.text}>
-                    <span>Item: </span>
+                    <span>Item : </span>
                     <span>{el?.packageName}</span>
                   </div>
                   <div className={styles.text}>
-                    <span>Weight:</span>
+                    <span>Weight : </span>
                     <span>{el?.weight}</span>
                   </div>
                 </div>
