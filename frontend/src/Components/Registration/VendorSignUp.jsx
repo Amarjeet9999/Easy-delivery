@@ -56,16 +56,36 @@ export const VendorSignUp = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div>
-          <input name="email" type="email" onChange={handleChange} />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <input name="password" type="password" onChange={handleChange} />
+          <input
+            name="password"
+            type="password"
+            placeholder="Name"
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <input name="phone" type="text" onChange={handleChange} />
+          <input
+            name="phone"
+            type="text"
+            placeholder="Phone No..."
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <input name="adhar" type="text" onChange={handleChange} />
+          <input
+            name="adhar"
+            type="text"
+            placeholder="Adhar No..."
+            onChange={handleChange}
+          />
         </div>
         <div>
           <input type="file" onChange={handleUpload} />

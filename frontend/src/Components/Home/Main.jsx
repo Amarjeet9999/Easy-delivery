@@ -14,8 +14,12 @@ function Main() {
           <Typography variant="h4">Choose any one of the mode below</Typography>
         </div>
         <div className={styles.middleContainer}>
-          <h1>Vendor</h1>
-          <h1>Driver</h1>
+          <Slide left>
+            <h1>Vendor</h1>
+          </Slide>
+          <Slide right>
+            <h1>Driver</h1>
+          </Slide>
         </div>
         <div className={styles.lowerContainer}>
           <div className={styles.cards}>

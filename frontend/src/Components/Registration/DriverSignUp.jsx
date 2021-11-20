@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { storage } from "./firebase";
 import axios from "axios";
 
@@ -96,7 +96,6 @@ export const DriverSignUp = () => {
           />
         </div>
         <div>
-          <label>Driving Licence</label>
           <input onChange={fileUpload} type="file" />
         </div>
         <div>
