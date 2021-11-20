@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "./DriverDash.module.css";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const DriverDash = () => {
   const [data, setData] = React.useState([]);
@@ -64,6 +65,15 @@ export const DriverDash = () => {
   return (
     <div className={styles.container}>
       <NavContainer user={"driver"} page={"home"} />
+      {/* <Button variant>Driver Jobs</Button> */}
+      <div className={styles.sections}>
+        <span>
+          <Link to="/driverDash">New Vendors</Link>
+        </span>
+        <span>
+          <Link to="driverJobs">Accepted Vendors</Link>
+        </span>
+      </div>
       <div className={styles.sub_container}>
         {data
           ?.filter((el) => !el.status)
