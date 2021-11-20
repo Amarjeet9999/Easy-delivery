@@ -5,6 +5,7 @@ import axios from "axios";
 import styles from "./DriverDash.module.css";
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const DriverDash = () => {
   const [data, setData] = React.useState([]);
@@ -22,7 +23,7 @@ export const DriverDash = () => {
   }, []);
 
   React.useEffect(() => {
-    const pusher = new Pusher("1a697b90bc54cbe04c2c", {
+    const pusher = new Pusher("4bdbd330c1135b572cd7", {
       cluster: "ap2",
       encrypted: true,
     });
@@ -49,7 +50,6 @@ export const DriverDash = () => {
     await axios.patch(`http://localhost:5000/package/${id}`).then((res) => {
       // console.log(res.data);
     });
-    fetchData();
     await axios
       .patch(`http://localhost:5000/driver/${user._id}`, {
         jobs: [id],
@@ -64,6 +64,15 @@ export const DriverDash = () => {
   return (
     <div className={styles.container}>
       <NavContainer user={"driver"} page={"home"} />
+      {/* <Button variant>Driver Jobs</Button> */}
+      <div className={styles.sections}>
+        <span>
+          <Link to="/driverDash">New Vendors</Link>
+        </span>
+        <span>
+          <Link to="driverJobs">Accepted Vendors</Link>
+        </span>
+      </div>
       <div className={styles.sub_container}>
         {data
           ?.filter((el) => !el.status)
