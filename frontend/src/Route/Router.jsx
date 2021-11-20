@@ -45,15 +45,12 @@ export const Router = () => {
         <PrivateRoute path="/driverDash" to="/">
           <DriverDash />
         </PrivateRoute>
-<<<<<<< HEAD
-
-        <PrivateRoute path="/driverJobs" to="/">
-          <DriverJobs />
-=======
         <PrivateRoute path="/vendorDash" to="/">
           <VendorDashBoard />
->>>>>>> b77d4555a73087bd99052db39046ba56e79b667e
         </PrivateRoute>
+        <Route path="/driverJobs" to="/">
+          <DriverJobs />
+        </Route>
       </Switch>
     </div>
   );
