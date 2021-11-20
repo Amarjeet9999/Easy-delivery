@@ -1,9 +1,11 @@
 .container {
-  height: 49px;
+  height: 55px;
+  /* background: linear-gradient(-90deg, #e3e4f8, #f0f2f7); */
+  background: linear-gradient(to bottom, #d0ceff, #f0f2f7 90%);
 }
-.container {
+/* .container {
   border: 1px solid black;
-}
+} */
 
 .left_nav,
 .right_nav {
@@ -14,8 +16,10 @@
 .home_container,
 .driver_nav_container {
   display: flex;
+  align-items: center;
 }
 
+/*
 .landing_container,
 .home_container {
   width: 98%;
@@ -28,7 +32,7 @@
 
 /*  client */
 
-.driver_nav_container {
+/* .driver_nav_container {
   border: 1px solid red;
   height: 100%;
   align-items: center;
@@ -52,4 +56,77 @@
 
 .input_box > input:focus {
   outline: none;
+} */
+.logo > img {
+  width: 13.5%;
+  margin: 5px 0px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+.logo > p {
+  margin-left: 15px;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 0px 0 0 15px;
+  color: #000;
+  font-style: italic;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+}
+.landing_container,
+.home_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 35px;
+}
+.landing_container button,
+.home_container button {
+  margin-left: 40px;
+  font-size: 18px;
+  padding: 7px 15px;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: transparent;
+}
+.landing_container button:nth-of-type(3),
+.home_container button:nth-of-type(3) {
+  background-color: #6c63ff;
+  color: #fff;
+  cursor: pointer;
+}
+.landing_container button:hover,
+.home_container button:hover {
+  background-color: #6c63ff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.left_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.input_box input {
+  width: 365px;
+  height: 33px;
+  border-radius: 0.3rem;
+  border: 0.5px solid grey;
+  padding-left: 10px;
+}
+.input_box input:focus {
+  outline: none;
+}
+.driver_nav_container button {
+  font-size: 15px;
+  padding: 9px 15px;
+  border-radius: 0.05rem;
+  border: none;
+  background-color: #6c63ff;
+  color: #fff;
+  cursor: pointer;
 }

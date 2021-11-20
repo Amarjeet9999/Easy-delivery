@@ -22,9 +22,10 @@ export const NavHome = () => {
 
   return (
     <div className={styles.home_container}>
-      <Button variant="contained" onClick={handleLogout}>
-        Log out
-      </Button>
+      <button>Contact</button>
+      <button>FAQ</button>
+      <button>Home</button>
+      <button onClick={handleLogout}>Log out</button>
     </div>
   );
 };
