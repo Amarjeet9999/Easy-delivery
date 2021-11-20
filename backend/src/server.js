@@ -19,6 +19,7 @@ const pusher = new Pusher({
 
 // Controllers
 const userController = require("./controllers/users.controller");
+const cityController = require("./controllers/cities.controller");
 const {
   userRegister,
   userLogin,
