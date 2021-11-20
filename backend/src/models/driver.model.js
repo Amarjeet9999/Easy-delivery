@@ -14,7 +14,7 @@ const driverSchema = new mongoose.Schema(
     jobs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "category",
+        ref: "package",
       },
     ],
   },
