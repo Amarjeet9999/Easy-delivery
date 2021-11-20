@@ -7,6 +7,7 @@ import { LoginPage } from "../Pages/LoginPage/LoginPage";
 import { PrivateRoute } from "./PrivateRoute";
 import { DriverDash } from "../Pages/DriverDashboard/DriverDash";
 import { NavContainer } from "../Components/Navbar/NavContainer";
+
 export const Router = () => {
   return (
     <div>

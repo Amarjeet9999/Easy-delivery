@@ -19,21 +19,7 @@ export const NavClient = () => {
     if (userLoco.length <= 2) {
       return false;
     }
-    var headers = new Headers();
-    headers.append(
-      "X-CSCAPI-KEY",
-      "WmJuSlZmY1MzME9GUFNGSVA4NnA2RkdhdG9Nd1dyY2FoV0tCeEJXdg=="
-    );
-
-    var requestOptions = {
-      method: "GET",
-      headers: headers,
-      redirect: "follow",
-    };
-    await fetch(
-      `http://api.serpstack.com/search?access_key=382dd57ca9a3e6d30615bf0737e1a6c5&query=${userLoco}`,
-      requestOptions
-    )
+    await fetch(`http://localhost:5000/${userLoco}`)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
