@@ -47,9 +47,14 @@ export const DriverDash = () => {
     // axios
     //   .get("http://localhost:5000/driver/6198a1d58bf34e9e04de08d8")
     //   .then((res) => console.log(res.data.data));
-    // axios
-    //   .patch(`http://localhost:5000/driver/${id}`)
-    //   .then((res) => console.log(res.data));
+    axios
+      .patch(`http://localhost:5000/driver/6198a1d58bf34e9e04de08d8`, {
+        jobs: [id],
+      })
+      .then((res) => {
+        console.log(res.data);
+        setData(data.filter((el) => el.status === false));
+      });
   };
 
   return (
