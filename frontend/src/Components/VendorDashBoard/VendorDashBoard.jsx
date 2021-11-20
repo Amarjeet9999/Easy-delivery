@@ -10,7 +10,7 @@ export const VendorDashBoard = () => {
   const [data, setData] = useState({});
   const [wait, setWait] = useState(false);
   const [id, setId] = useState("");
-  const [prod, setProd] = useState({});
+  const [prod, setProd] = useState("");
 
   console.log(id);
   useEffect(() => {
@@ -73,7 +73,7 @@ export const VendorDashBoard = () => {
           image: el.url,
           weight: el.weight,
           status: false,
-          driverId: "",
+          driverId: [],
         })
         .then((res) => {
           localStorage.setItem("package", JSON.stringify(res.data.data));
@@ -87,6 +87,7 @@ export const VendorDashBoard = () => {
 
   const waitingData = async () => {
     let id = JSON.parse(localStorage.getItem("package"));
+    if (id === null || id === undefined) return;
     await axios.get(`http://localhost:5000/package/${id._id}`).then((res) => {
       setProd(res.data.data);
     });
@@ -102,26 +103,25 @@ export const VendorDashBoard = () => {
     setWait(!wait);
   };
 
+  // Important Function Be Aware
   React.useEffect(() => {
     waitingData();
-    const pusher = new Pusher("4bdbd330c1135b572cd7", {
+    const pusher = new Pusher("e028bc463a9bc675142e", {
       cluster: "ap2",
       encrypted: true,
     });
 
     const channel = pusher.subscribe("package");
-    channel.bind("inserted", (el) => {
-      setData([...data, el]);
-    });
 
     channel.bind("updated", (el) => {
-      // console.log("EL", el);
-      // console.log("PROD", prod._id);
       let packageId = JSON.parse(localStorage.getItem("package"));
+      // console.log("Before", packageId.status);
+      // console.log("El", el.status);
       if (el.id === packageId._id) {
         let data = { ...prod, status: el.status };
-        setData(data);
-        console.log("Matched");
+        setProd(data);
+        // console.log("Matched");
+        // console.log("After", packageId.status);
       }
     });
 

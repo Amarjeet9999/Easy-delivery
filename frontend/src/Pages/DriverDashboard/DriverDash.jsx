@@ -23,7 +23,7 @@ export const DriverDash = () => {
   }, []);
 
   React.useEffect(() => {
-    const pusher = new Pusher("4bdbd330c1135b572cd7", {
+    const pusher = new Pusher("e028bc463a9bc675142e", {
       cluster: "ap2",
       encrypted: true,
     });

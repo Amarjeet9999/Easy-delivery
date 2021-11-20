@@ -24,6 +24,7 @@ export const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [client, setClient] = useState("user");
   const dispatch = useDispatch();
+  const [err, setErr] = React.useState(false);
   // const { user, token, auth } = useSelector((state) => state.auth);
   const { role } = useSelector((state) => state.auth);
   const history = useHistory();
@@ -47,6 +48,7 @@ export const LoginPage = () => {
           localStorage.setItem("user", JSON.stringify(res.data));
         });
     } catch (err) {
+      setErr(true);
       const action = loginError("wrong credentials");
       dispatch(action);
     }
@@ -82,6 +84,7 @@ export const LoginPage = () => {
             }}
           />
         </div>
+
         <div className={`${styles.input_box}${styles.radio}`}>
           <FormControl component="fieldset">
             <RadioGroup
@@ -108,6 +111,7 @@ export const LoginPage = () => {
             </RadioGroup>
           </FormControl>
         </div>
+
         <div className={styles.button_box}>
           <Button variant="contained" size="medium" onClick={handleLogin}>
             Log in
