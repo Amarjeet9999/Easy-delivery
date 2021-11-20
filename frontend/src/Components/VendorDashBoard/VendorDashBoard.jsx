@@ -10,7 +10,7 @@ export const VendorDashBoard = () => {
   const [data, setData] = useState({});
   const [wait, setWait] = useState(false);
   const [id, setId] = useState("");
-  const [prod, setProd] = useState(false);
+  const [prod, setProd] = useState({});
 
   console.log(id);
   useEffect(() => {
@@ -87,7 +87,7 @@ export const VendorDashBoard = () => {
 
   const waitingData = async () => {
     let id = JSON.parse(localStorage.getItem("package"));
-    await axios.get(`http://localhost:5000/package/${id}`).then((res) => {
+    await axios.get(`http://localhost:5000/package/${id._id}`).then((res) => {
       setProd(res.data.data);
     });
   };
@@ -115,9 +115,14 @@ export const VendorDashBoard = () => {
     });
 
     channel.bind("updated", (el) => {
-      console.log(el);
-      let data = { ...prod, status: el.status };
-      setProd(data);
+      // console.log("EL", el);
+      // console.log("PROD", prod._id);
+      let packageId = JSON.parse(localStorage.getItem("package"));
+      if (el.id === packageId._id) {
+        let data = { ...prod, status: el.status };
+        setData(data);
+        console.log("Matched");
+      }
     });
 
     return () => {
@@ -126,7 +131,7 @@ export const VendorDashBoard = () => {
     };
   }, [data]);
 
-  console.log("Prod", prod);
+  console.log("Prod", prod._id);
 
   return (
     <>
