@@ -99,7 +99,8 @@ export const VendorDashBoard = () => {
     let id = JSON.parse(localStorage.getItem("package"));
     if (id === null || id === undefined) return;
     await axios.get(`http://localhost:5000/package/${id._id}`).then((res) => {
-      setProd(res.data.data);
+      console.log(res);
+      setProd(res.data.data[0]);
     });
   };
 
@@ -154,13 +155,15 @@ export const VendorDashBoard = () => {
     };
   }, [data]);
 
-  // console.log("Prod", prod._id);
+  console.log("Prod", prod);
 
   return (
     <>
       <div className={styles.headingContainer}>
         <div onClick={handledet}>Product Detail</div>
-        <div onClick={handleWait}>Waiting Area</div>
+        <div onClick={handleWait}>
+          {prod.status ? "Accepted" : "Waiting Area"}
+        </div>
       </div>
       {!wait ? (
         <div className={styles.productDetails}>
@@ -246,13 +249,14 @@ export const VendorDashBoard = () => {
               <span>Weight : </span>
               <span>{mainData[0]?.weight}</span>
             </div>
-          </div>
-          <div className={styles.image}>
-            <img src={mainData[0]?.image} alt="" />
+            <div className={styles.image}>
+              <img src={mainData[0]?.image} alt="" />
+            </div>
           </div>
         </div>
       ) : (
         <div>
+          <div>Accepted...</div>
           <div className={styles.list}>
             <div className={styles.route}>
               <div className={styles.text}>
@@ -272,13 +276,24 @@ export const VendorDashBoard = () => {
               <span>Weight : </span>
               <span>{mainData[0]?.weight}</span>
             </div>
+            <div className={styles.image}>
+              <img src={mainData[0]?.image} alt="" />
+            </div>
           </div>
-          <div className={styles.image}>
-            <img src={mainData[0]?.image} alt="" />
-          </div>
+
           <div>
-            <div>{mainData[0]?.driverId[0]?.name}</div>
-            <div></div>
+            <div>
+              <span>Name:</span>
+              {mainData[0]?.driverId[0]?.name}
+            </div>
+            <div>
+              <span>Phone No:</span>
+              {mainData[0]?.driverId[0]?.phone}
+            </div>
+            <div>
+              <span>Vehicle No:</span>
+              {mainData[0]?.driverId[0]?.vehicleNo}
+            </div>
           </div>
         </div>
       )}
