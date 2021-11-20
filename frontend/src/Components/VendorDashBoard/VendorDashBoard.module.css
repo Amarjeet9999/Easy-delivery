@@ -1,0 +1,75 @@
+.headingContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+.headingContainer > div {
+  padding: 20px 300px;
+  background-color: #e6e4ff;
+  margin-top: 0px;
+  border-radius: 0.5rem;
+  font-size: 20px;
+}
+.headingContainer > div:hover {
+  background-color: #6c63ff;
+  color: #fff;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+}
+.productDetails {
+  text-align: center;
+}
+.form {
+  display: grid;
+  grid-template-areas:
+    "a . b"
+    "c . d"
+    "e . f";
+
+  width: 50%;
+  margin: auto;
+}
+.form > div:nth-of-type(1) {
+  grid-area: a;
+}
+.form > div:nth-of-type(2) {
+  grid-area: b;
+}
+.form > div:nth-of-type(3) {
+  grid-area: c;
+}
+.form > div:nth-of-type(4) {
+  grid-area: d;
+}
+.form > div:nth-of-type(5) {
+  grid-area: e;
+}
+.form > div:nth-of-type(6) {
+  grid-area: f;
+}
+.form > div:nth-of-type(6) > * {
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 15px;
+  height: 3.5rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.form > div > * {
+  width: 350px;
+  margin: 25px;
+}
+.signUpSvg > * {
+  width: 13%;
+  height: 18%;
+  margin-bottom: 35px;
+  margin-top: 45px;
+}
+.info {
+  position: absolute;
+  top: 275px;
+  left: 413px;
+}

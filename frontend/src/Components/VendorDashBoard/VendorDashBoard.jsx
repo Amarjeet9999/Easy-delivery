@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { storage } from "../Registration/firebase";
-import { Wrap } from "./VendorStyle";
 import Pusher from "pusher-js";
+import styles from "./VendorDashBoard.module.css";
+import { TextField, Typography } from "@mui/material";
+import { ReactComponent as ProductDetailsSvg } from "../Home/svg/productDetails.svg";
 
 export const VendorDashBoard = () => {
   const [url, setUrl] = useState("");
@@ -135,42 +137,33 @@ export const VendorDashBoard = () => {
 
   return (
     <>
-      <Wrap>
+      <div className={styles.headingContainer}>
         <div onClick={handleWait}>Product Detail</div>
         <div onClick={handleWait}>Waiting Area</div>
-      </Wrap>
+      </div>
       {!wait ? (
-        <div>
-          <form onSubmit={handleSubmit}>
+        <div className={styles.productDetails}>
+          <Typography variant="h6" className={styles.info}>
+            Enter Product Details <span style={{ color: "red" }}>*</span>
+          </Typography>
+          <div className={styles.signUpSvg}>
+            <ProductDetailsSvg />
+          </div>
+          <form onSubmit={handleSubmit} className={styles.form}>
             <div>
-              <div>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Product name"
-                  onChange={handleChagne}
-                />
-              </div>
-              <div>
-                <input
-                  name="from"
-                  type="text"
-                  placeholder="From"
-                  onChange={handleChagne}
-                />
-              </div>
-              <div>
-                <input
-                  name="to"
-                  type="text"
-                  placeholder="To"
-                  onChange={handleChagne}
-                />
-              </div>
+              <TextField
+                id="outlined-name"
+                label="Product name"
+                name="name"
+                type="text"
+                placeholder="Product name"
+                onChange={handleChagne}
+              />
             </div>
-
             <div>
-              <input
+              <TextField
+                id="outlined-name"
+                label="Product weight"
                 name="weight"
                 type="text"
                 placeholder="Product Weight"
@@ -178,7 +171,28 @@ export const VendorDashBoard = () => {
               />
             </div>
             <div>
-              <input type="file" onChange={fileUpload} />
+              <TextField
+                id="outlined-name"
+                label="From"
+                name="from"
+                type="text"
+                placeholder="From"
+                onChange={handleChagne}
+              />
+            </div>
+            <div>
+              <TextField
+                id="outlined-name"
+                label="To"
+                name="to"
+                type="text"
+                placeholder="To"
+                onChange={handleChagne}
+              />
+            </div>
+
+            <div>
+              <TextField type="file" onChange={fileUpload} />
             </div>
             <div>
               <input type="submit" />
