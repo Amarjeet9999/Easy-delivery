@@ -66,6 +66,7 @@ export const DriverSignUp = () => {
   };
 
   const handleRegister = async (el) => {
+    console.log(el);
     try {
       dispatch(registerLoading());
       await axios

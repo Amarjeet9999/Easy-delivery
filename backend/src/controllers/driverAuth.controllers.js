@@ -115,4 +115,11 @@ const checkUsers = (users, email, pass) => {
   return false;
 };
 
-module.exports = { driverRegister, driverLogin, loginForDeploy };
+
+
+module.exports = {
+  driverRegister,
+  driverLogin,
+  loginForDeploy,
+  
+};

@@ -71,7 +71,7 @@ export const VendorSignUp = () => {
       await axios
         .post("http://localhost:5000/user-register", {
           email: el.email,
-          name: el.name,
+          name: "name",
           aadhar: el.aadhar,
           phone: el.phone,
           password: el.password,
@@ -104,7 +104,7 @@ export const VendorSignUp = () => {
         <div>
           <TextField
             id="outlined-name"
-            label="Name"
+            label="Email"
             name="email"
             type="email"
             onChange={handleChange}
@@ -135,7 +135,7 @@ export const VendorSignUp = () => {
           <TextField
             id="outlined-name"
             label="Aadhar Number"
-            name="adhar"
+            name="aadhar"
             type="text"
             onChange={handleChange}
             placeholder="Aadhar no..."

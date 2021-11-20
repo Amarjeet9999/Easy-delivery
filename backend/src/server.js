@@ -28,6 +28,7 @@ const {
   driverLogin,
 } = require("./controllers/driverAuth.controllers");
 const packageController = require("./controllers/package.controller");
+const driverController = require("./controllers/drive.control.js");
 
 const connectDB = async () => {
   await connect();
@@ -40,6 +41,7 @@ app.use("/driver-login", driverLogin);
 app.use("/driver-register", driverRegister);
 app.use("/users", userController);
 app.use("/package", packageController);
+app.use("/driver", driverController);
 
 ///
 ///

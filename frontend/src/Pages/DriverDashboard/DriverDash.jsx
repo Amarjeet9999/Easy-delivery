@@ -9,7 +9,6 @@ export const DriverDash = () => {
 
   const fetchData = async () => {
     await axios.get("http://localhost:5000/package").then((res) => {
-      console.log(res.data.data);
       setData(res.data.data);
     });
   };
@@ -29,14 +28,12 @@ export const DriverDash = () => {
     });
 
     channel.bind("updated", (el) => {
-      console.log(el);
+    
       setData(
         data.map((e) => {
           return e._id === el.id ? { ...e, status: el.status } : e;
         })
       );
-      console.log("Maybe Update", data[0].status);
-      console.log("ata", data[0].status);
     });
 
     return () => {
@@ -45,7 +42,6 @@ export const DriverDash = () => {
     };
   }, [data]);
 
-  console.log("Data", data);
 
   return (
     <div>
