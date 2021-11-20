@@ -30,7 +30,6 @@ export const DriverDash = () => {
     });
 
     channel.bind("updated", (el) => {
-    
       setData(
         data.map((e) => {
           return e._id === el.id ? { ...e, status: el.status } : e;
@@ -44,6 +43,14 @@ export const DriverDash = () => {
     };
   }, [data]);
 
+  const handleClick = (id) => {
+    // axios
+    //   .get("http://localhost:5000/driver/6198a1d58bf34e9e04de08d8")
+    //   .then((res) => console.log(res.data.data));
+    // axios
+    //   .patch(`http://localhost:5000/driver/${id}`)
+    //   .then((res) => console.log(res.data));
+  };
 
   return (
     <div className={styles.container}>
@@ -75,7 +82,14 @@ export const DriverDash = () => {
               <div className={styles.image}>
                 <img src={el?.image} alt="" />
               </div>
-              <Button variant="contained">Accept</Button>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  handleClick(el?._id);
+                }}
+              >
+                Accept
+              </Button>
             </div>
           )
         )}

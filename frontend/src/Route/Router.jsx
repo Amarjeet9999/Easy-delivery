@@ -26,7 +26,7 @@ export const Router = () => {
           <NavContainer page="landing" />
           <LoginPage />
         </Route>
-        <PrivateRoute path="/driverDash">
+        <PrivateRoute path="/driverDash" to="/">
           <DriverDash />
         </PrivateRoute>
       </Switch>

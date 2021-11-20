@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { DriverDash } from "../Pages/DriverDashboard/DriverDash";
 import { VendorDashBoard } from "../Components/VendorDashBoard/VendorDashBoard";
 
-export const PrivateRoute = ({ exact, children, path }) => {
+export const PrivateRoute = ({ exact, children, path,to }) => {
   const auth = useSelector((state) => state.auth);
   if (!auth) {
     return <Redirect to="/"></Redirect>;
