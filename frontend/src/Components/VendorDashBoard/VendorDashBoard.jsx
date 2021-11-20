@@ -2,13 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { storage } from "../Registration/firebase";
 import { Wrap } from "./VendorStyle";
+import Pusher from "pusher-js";
+
 export const VendorDashBoard = () => {
   const [url, setUrl] = useState("");
   const [image, setImage] = useState(null);
   const [data, setData] = useState({});
   const [wait, setWait] = useState(false);
-  const [deatil, setDetail] = useState({});
   const [id, setId] = useState("");
+  const [prod, setProd] = useState({});
+
   console.log(id);
   useEffect(() => {
     if (image) {
@@ -73,12 +76,20 @@ export const VendorDashBoard = () => {
           status: false,
         })
         .then((res) => {
-          setId(res.data.data._id);
-          console.log(res.data);
+          localStorage.setItem("package", JSON.stringify(res.data.data));
+          setProd(res.data.data);
+          waitingData();
         });
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const waitingData = async () => {
+    let id = JSON.parse(localStorage.getItem("package"));
+    await axios.get(`http://localhost:5000/package/${id._id}`).then((res) => {
+      setProd(res.data.data);
+    });
   };
 
   const handleDetails = async () => {
@@ -90,6 +101,37 @@ export const VendorDashBoard = () => {
   const handleWait = () => {
     setWait(!wait);
   };
+
+  React.useEffect(() => {
+    waitingData();
+    const pusher = new Pusher("4bdbd330c1135b572cd7", {
+      cluster: "ap2",
+      encrypted: true,
+    });
+
+    const channel = pusher.subscribe("package");
+    channel.bind("inserted", (el) => {
+      setData([...data, el]);
+    });
+
+    channel.bind("updated", (el) => {
+      // console.log("EL", el);
+      // console.log("PROD", prod._id);
+      let packageId = JSON.parse(localStorage.getItem("package"));
+      if (el.id === packageId._id) {
+        let data = { ...prod, status: el.status };
+        setData(data);
+        console.log("Matched");
+      }
+    });
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [data]);
+
+  console.log("Prod", prod._id);
 
   return (
     <>
@@ -143,9 +185,13 @@ export const VendorDashBoard = () => {
             </div>
           </form>
         </div>
+      ) : !prod.status ? (
+        <div>
+          <h1>...Waiting</h1>
+        </div>
       ) : (
         <div>
-          <h1>Hello</h1>
+          <h1>...Accepted</h1>
         </div>
       )}
     </>

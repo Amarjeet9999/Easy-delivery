@@ -5,7 +5,6 @@ import { NavHome } from "./NavHome";
 import { NavClient } from "./NavClient";
 
 export const NavContainer = ({ user, page }) => {
-  console.log("page", page);
   return (
     <div className={styles.container}>
       <div className={styles.left_nav}>
@@ -22,11 +21,7 @@ export const NavContainer = ({ user, page }) => {
         {user === "driver" ? <NavClient /> : null}
       </div>
       <div className={styles.right_nav}>
-        {page === "home" ? (
-          <NavHome />
-        ) : page === "landing" ? null : (
-          <NavLanding />
-        )}
+        {page ? <NavHome /> : <NavLanding />}
       </div>
     </div>
   );
