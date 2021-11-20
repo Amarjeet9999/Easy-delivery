@@ -6,6 +6,7 @@ import {
   RadioGroup,
   FormControl,
   FormControlLabel,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
@@ -15,6 +16,8 @@ import {
   loginSuccess,
   loginError,
 } from "../../Redux/Auth/action.js";
+import { useHistory } from "react-router-dom";
+import { ReactComponent as LoginSvg } from "./login.svg";
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +25,8 @@ export const LoginPage = () => {
   const [client, setClient] = useState("user");
   const dispatch = useDispatch();
   // const { user, token, auth } = useSelector((state) => state.auth);
+  const { role } = useSelector((state) => state.auth);
+  const history = useHistory();
 
   const handleLogin = async () => {
     try {
@@ -40,6 +45,11 @@ export const LoginPage = () => {
           const action = loginSuccess(res.data);
           dispatch(action);
           localStorage.setItem("user", JSON.stringify(res.data));
+          role === "driver"
+            ? history.push("/driverDash")
+            : role === "user"
+            ? history.push("/vendorDash")
+            : history.push("/");
         });
     } catch (err) {
       const action = loginError("wrong credentials");
@@ -49,9 +59,14 @@ export const LoginPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.loginSvg}>
+        <LoginSvg />
+      </div>
       <div className={styles.login_container}>
         <div className={styles.input_box}>
-          <input
+          <TextField
+            id="outlined-name"
+            label="E-mail Address"
             type="email"
             name="email"
             placeholder="Enter Email"
@@ -61,7 +76,9 @@ export const LoginPage = () => {
           />
         </div>
         <div className={styles.input_box}>
-          <input
+          <TextField
+            id="outlined-name"
+            label="Password"
             type="password"
             name="password"
             placeholder="Enter Password"
@@ -97,12 +114,7 @@ export const LoginPage = () => {
           </FormControl>
         </div>
         <div className={styles.button_box}>
-          <Button
-            variant="contained"
-            size="medium"
-            style={{ width: "100%" }}
-            onClick={handleLogin}
-          >
+          <Button variant="contained" size="medium" onClick={handleLogin}>
             Log in
           </Button>
         </div>
