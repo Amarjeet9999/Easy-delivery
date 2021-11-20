@@ -7,6 +7,7 @@ import { LoginPage } from "../Pages/LoginPage/LoginPage";
 import { PrivateRoute } from "./PrivateRoute";
 import { DriverDash } from "../Pages/DriverDashboard/DriverDash";
 import { NavContainer } from "../Components/Navbar/NavContainer";
+import { VendorDashBoard } from "../Components/VendorDashBoard/VendorDashBoard";
 export const Router = () => {
   return (
     <div>
@@ -28,6 +29,9 @@ export const Router = () => {
         </Route>
         <PrivateRoute path="/driverDash" to="/">
           <DriverDash />
+        </PrivateRoute>
+        <PrivateRoute path="/vendorDash" to="/">
+          <VendorDashBoard />
         </PrivateRoute>
       </Switch>
     </div>

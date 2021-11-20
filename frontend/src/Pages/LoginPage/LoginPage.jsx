@@ -15,6 +15,7 @@ import {
   loginSuccess,
   loginError,
 } from "../../Redux/Auth/action.js";
+import { useHistory } from "react-router-dom";
 
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +23,8 @@ export const LoginPage = () => {
   const [client, setClient] = useState("user");
   const dispatch = useDispatch();
   // const { user, token, auth } = useSelector((state) => state.auth);
+  const { role } = useSelector((state) => state.auth);
+  const history = useHistory();
 
   const handleLogin = async () => {
     try {
@@ -40,6 +43,11 @@ export const LoginPage = () => {
           const action = loginSuccess(res.data);
           dispatch(action);
           localStorage.setItem("user", JSON.stringify(res.data));
+          role === "driver"
+            ? history.push("/driverDash")
+            : role === "user"
+            ? history.push("/vendorDash")
+            : history.push("/");
         });
     } catch (err) {
       const action = loginError("wrong credentials");
