@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Nav.module.css";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import { useDispatch } from "react-redux";
@@ -9,35 +9,12 @@ const ipLocation = require("iplocation");
 
 export const NavClient = () => {
   const [autoLoco, setAutoLoco] = useState("");
-  // const [userLoco, setUserLoco] = useState("");
+  const [userLoco, setUserLoco] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   // const dispatch = useDispatch();
 
-  async function search() {
-    let userLoco = document.querySelector("input").value;
-    console.log(userLoco);
-    if (userLoco.length <= 2) {
-      return false;
-    }
-    await fetch(`http://localhost:5000/${userLoco}`)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  }
-
-  const debounce = () => {
-    let interval;
-    return function () {
-      clearTimeout(interval);
-      interval = setTimeout(() => {
-        search();
-      }, 500);
-    };
-  };
-
-  const y = debounce();
   const handleClick = (e) => {
-    // console.log(userLoco);
+    console.log(userLoco);
   };
 
   const getLocation = async () => {
@@ -65,21 +42,19 @@ export const NavClient = () => {
         <input
           type="text"
           placeholder="Enter Source"
-          // value={userLoco}
+          value={userLoco}
           onChange={(e) => {
-            // setUserLoco(e.target.value);
-            y();
+            setUserLoco(e.target.value);
           }}
         />
       </div>
-      <Button
-        variant="contained"
+      <button
         size="small"
         style={{ borderRadius: "10px", margin: "0% 2%" }}
         onClick={handleClick}
       >
         Enter
-      </Button>
+      </button>
     </div>
   );
 };
