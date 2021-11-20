@@ -8,7 +8,7 @@ import { NavContainer } from "../Components/Navbar/NavContainer";
 export const Router = () => {
   return (
     <div>
-      <NavContainer page={"home"} />
+      <NavContainer page={"home"} user={"driver"} />
       <Switch>
         <Route exact path="/">
           <Home />

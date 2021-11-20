@@ -9,12 +9,49 @@ const ipLocation = require("iplocation");
 
 export const NavClient = () => {
   const [autoLoco, setAutoLoco] = useState("");
-  const [userLoco, setUserLoco] = useState("");
+  // const [userLoco, setUserLoco] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   // const dispatch = useDispatch();
 
-  const handleClick = (e) => {
+  async function search() {
+    let userLoco = document.querySelector("input").value;
     console.log(userLoco);
+    if (userLoco.length <= 2) {
+      return false;
+    }
+    var headers = new Headers();
+    headers.append(
+      "X-CSCAPI-KEY",
+      "WmJuSlZmY1MzME9GUFNGSVA4NnA2RkdhdG9Nd1dyY2FoV0tCeEJXdg=="
+    );
+
+    var requestOptions = {
+      method: "GET",
+      headers: headers,
+      redirect: "follow",
+    };
+    await fetch(
+      `http://api.serpstack.com/search?access_key=382dd57ca9a3e6d30615bf0737e1a6c5&query=${userLoco}`,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }
+
+  const debounce = () => {
+    let interval;
+    return function () {
+      clearTimeout(interval);
+      interval = setTimeout(() => {
+        search();
+      }, 500);
+    };
+  };
+
+  const y = debounce();
+  const handleClick = (e) => {
+    // console.log(userLoco);
   };
 
   const getLocation = async () => {
@@ -42,9 +79,10 @@ export const NavClient = () => {
         <input
           type="text"
           placeholder="Enter Source"
-          value={userLoco}
+          // value={userLoco}
           onChange={(e) => {
-            setUserLoco(e.target.value);
+            // setUserLoco(e.target.value);
+            y();
           }}
         />
       </div>
