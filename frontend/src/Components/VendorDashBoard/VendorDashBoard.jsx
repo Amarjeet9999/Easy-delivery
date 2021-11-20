@@ -64,6 +64,7 @@ export const VendorDashBoard = () => {
           packageName: el.name,
           image: el.url,
           weight: el.weight,
+          status: false,
         })
         .then((res) => {
           console.log(res.data);

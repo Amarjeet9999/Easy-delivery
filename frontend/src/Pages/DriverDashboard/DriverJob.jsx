@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 export const DriverJobs = () => {
   const [driver, setDriver] = React.useState("");
+  // console.log("Hello");
 
   const fetchUser = async () => {
     let userId = JSON.parse(localStorage.getItem("user"));
@@ -36,7 +37,7 @@ export const DriverJobs = () => {
   React.useState(() => {
     fetchUser();
   }, []);
-  console.log("Driver", driver);
+  // console.log("Driver", driver);
 
   return (
     <div className={styles.jobs_container}>

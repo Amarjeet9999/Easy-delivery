@@ -45,11 +45,6 @@ export const LoginPage = () => {
           const action = loginSuccess(res.data);
           dispatch(action);
           localStorage.setItem("user", JSON.stringify(res.data));
-          role === "driver"
-            ? history.push("/driverDash")
-            : role === "user"
-            ? history.push("/vendorDash")
-            : history.push("/");
         });
     } catch (err) {
       const action = loginError("wrong credentials");

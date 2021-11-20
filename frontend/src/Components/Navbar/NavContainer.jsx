@@ -11,11 +11,7 @@ export const NavContainer = ({ user, page }) => {
         {user === "driver" ? <NavClient /> : null}
       </div>
       <div className={styles.right_nav}>
-        {page === "home" ? (
-          <NavHome />
-        ) : page === "landing" ? (
-          <NavLanding />
-        ) : null}
+        {page ? <NavHome /> : <NavLanding />}
       </div>
     </div>
   );

@@ -14,7 +14,8 @@ import { DriverJobs } from "../Pages/DriverDashboard/DriverJob";
 
 export const Router = () => {
   const dispatch = useDispatch();
-  // const { auth } = useSelector((state) => state.auth);
+  const { auth } = useSelector((state) => state.auth);
+
   React.useEffect(() => {
     dispatch(loginLoading());
     const data = localStorage.getItem("user");
@@ -28,28 +29,29 @@ export const Router = () => {
     <div>
       <Switch>
         <Route exact path="/">
+          <NavContainer page={auth} />
           <Home />
         </Route>
-        <Route path="/vendorSignUp">
-          <NavContainer page="landing" />
+        <PrivateRoute path="/vendorSignUp">
+          <NavContainer page={auth} />
           <VendorSignUp />
-        </Route>
-        <Route path="/driverSignUp">
-          <NavContainer page="landing" />
+        </PrivateRoute>
+        <PrivateRoute path="/driverSignUp">
+          <NavContainer page={auth} />
           <DriverSignUp />
-        </Route>
-        <Route path="/login">
-          <NavContainer page="landing" />
+        </PrivateRoute>
+        <PrivateRoute path="/login">
+          <NavContainer page={auth} />
           <LoginPage />
-        </Route>
-        <PrivateRoute path="/driverDash" to="/">
-          <DriverDash />
         </PrivateRoute>
-        <PrivateRoute path="/vendorDash" to="/">
-          <VendorDashBoard />
-        </PrivateRoute>
-        <Route path="/driverJobs" to="/">
+        <Route path="/driverJobs">
           <DriverJobs />
+        </Route>
+        <Route path="/driverDash" to="/">
+          <DriverDash />
+        </Route>
+        <Route path="/vendorDash" to="/">
+          <VendorDashBoard />
         </Route>
       </Switch>
     </div>

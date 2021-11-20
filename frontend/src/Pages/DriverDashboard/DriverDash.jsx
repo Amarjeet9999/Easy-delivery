@@ -23,7 +23,7 @@ export const DriverDash = () => {
   }, []);
 
   React.useEffect(() => {
-    const pusher = new Pusher("1a697b90bc54cbe04c2c", {
+    const pusher = new Pusher("4bdbd330c1135b572cd7", {
       cluster: "ap2",
       encrypted: true,
     });
@@ -50,7 +50,6 @@ export const DriverDash = () => {
     await axios.patch(`http://localhost:5000/package/${id}`).then((res) => {
       // console.log(res.data);
     });
-    fetchData();
     await axios
       .patch(`http://localhost:5000/driver/${user._id}`, {
         jobs: [id],
