@@ -1,4 +1,5 @@
-.container {
+.container,
+.jobs_container {
   width: 100%;
 }
 
@@ -20,7 +21,8 @@
   margin: 5% 0;
 }
 
-.sub_container {
+.sub_container,
+.jobs_sub_container {
   width: 93%;
   margin: auto;
   display: grid;
@@ -73,7 +75,7 @@
 }
 /* jobs */
 
-.jobs_container {
+/* .jobs_container {
   border: 1px solid black;
   width: 100vw;
 }
@@ -84,4 +86,4 @@
   display: grid;
   grid-template-columns: repeat(4, 20%);
   justify-content: space-evenly;
-}
+} */
